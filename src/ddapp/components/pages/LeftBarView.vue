@@ -6,14 +6,16 @@
         <el-collapse-item title="测试模型" name="1" >
           <ul>
             <li>
-              <img class="left-bar-img" @click="handleOption2" src="@/assets/images/OIP (4).jpg" alt="图片"
+              <img class="left-bar-img" @click="handleOption('changfangti')" src="@/assets/images/OIP (4).jpg" alt="图片"
                    widget-type="changfangti" draggable="true">
-<!--              <p>文本</p>-->
             </li>
             <li>
-              <img class="left-bar-img" @click="handleOption" src="@/assets/images/fsdfs(2).jpg"
+              <img class="left-bar-img" @click="handleOption('zhuanshi')" src="@/assets/images/fsdfs(2).jpg"
                    alt="图片" widget-type="zhuanshi" draggable="true">
-<!--              <p>图片</p>-->
+            </li>
+            <li>
+              <img class="left-bar-img" @click="handleOption('yuanzhu')" src="@/assets/images/OIP (5).jpg"
+                   alt="图片" widget-type="yuanzhu" draggable="true">
             </li>
             <!--分割线-->
 <!--            <li class="separate"></li>-->
@@ -71,16 +73,11 @@
                 console.log(val);
             },
 
-            handleOption(){
+            handleOption(name){
                 this.$emit('optionChange',{
-                    name : 'zhuanshi',
+                    name : name,
                 });
             },
-            handleOption2(){
-                this.$emit('optionChange',{
-                    name : 'mogu',
-                });
-            }
         },
         mounted() {
             utils.addCompoment();

@@ -347,6 +347,28 @@
                 this.objects.push(rollOverMesh)
             },
 
+            loadyuanzhu(){
+                // world 圆柱体
+                var geometry = new THREE.CylinderGeometry(20,20,100,40);
+                /*              var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
+                */
+                var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+
+                var mesh = new THREE.Mesh( geometry, material );
+                mesh.position.x = 0;
+                mesh.position.y = 0;
+                mesh.position.z = 0;
+                mesh.updateMatrix();
+                mesh.matrixAutoUpdate = false;
+                this.scene.add( mesh );
+
+                //添加控制
+                this.initDragControls(mesh)
+
+                //加入到场景
+                this.scene.add(mesh);
+                this.objects.push(mesh)
+            },
 
             handleDrag(e) {
                 var dataValue = e.dataTransfer.getData('widget-type')
@@ -359,6 +381,9 @@
                         break;
                     case 'changfangti':
                         this.loadmogu(x, y);
+                        break;
+                    case 'yuanzhu':
+                        this.loadyuanzhu(x, y);
                         break;
                 }
             },
