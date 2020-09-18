@@ -359,8 +359,9 @@
                 mesh.position.y = 0;
                 mesh.position.z = 0;
                 mesh.updateMatrix();
-                mesh.matrixAutoUpdate = false;
+                mesh.matrixAutoUpdate = true;
                 this.scene.add( mesh );
+                mesh.name = 'yuanzhu' // 使用name属性标记内部模型的名称
 
                 //添加控制
                 this.initDragControls(mesh)
