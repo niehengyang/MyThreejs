@@ -1,5 +1,6 @@
 <template>
   <div class="base-component" >
+    <div class="logo-item"><img src="@/assets/images/20200918164943.png" style="height: 34px"></div>
     <el-row class="base-component-main">
       <left-bar-view class="left-bar-item" @optionChange="handleSelectChange"></left-bar-view>
       <space-view class="speace-view-item" :model-name="modelName"></space-view>
@@ -53,5 +54,11 @@
     top: 50px;
     position: absolute;
     z-index: 99;
+  }
+  .logo-item{
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    height: 40px;
   }
 </style>

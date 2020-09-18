@@ -5,6 +5,7 @@
       <div id="WebGL-output"></div>
       <div id="Stats-output"></div>
       <div id="label"></div>
+      <el-button>上传模型</el-button>
       <el-button @click="removeModel">移除模型</el-button>
 
       <el-button>预览</el-button>

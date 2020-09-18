@@ -1,6 +1,7 @@
 <template>
-  <div class="left-bar-component">组件栏
+  <div class="left-bar-component">
     <div class="left-bar-main">
+      组件栏
       <el-collapse v-model="activeNames"  @change="handleChange">
         <el-collapse-item title="测试模型" name="1" >
           <ul>
@@ -91,6 +92,9 @@
   .left-bar-component{
   }
 
+  .left-bar-main{
+    padding: 8px;
+  }
   .left-bar-img-box{
     display: flex;
   }
