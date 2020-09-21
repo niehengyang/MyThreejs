@@ -33,32 +33,25 @@
   .base-component{
     width: 100%;
     height: 100%;
+    position: relative;
   }
   .base-component-main{
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: row;
   }
   .left-bar-item{
     width: 20%;
     height: 800px;
-    left: 0;
-    top: 50px;
-    position: absolute;
-    z-index: 99;
   }
 
   .speace-view-item{
     width: 79%;
     height: 800px;
-    right: 0;
-    top: 50px;
-    position: absolute;
-    z-index: 99;
   }
   .logo-item{
-    position: absolute;
-    top: 1px;
-    left: 1px;
+    width: 100%;
     height: 40px;
   }
 </style>

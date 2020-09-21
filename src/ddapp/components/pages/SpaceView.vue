@@ -1,29 +1,39 @@
 <template>
-  <div class="speace-view-box" >
-    <div id="container" @drop="handleDrag($event)"></div>
-    <div class="tool-bar-box">
-      <div id="WebGL-output"></div>
-      <div id="Stats-output"></div>
-      <div id="label"></div>
-      <el-button>上传模型</el-button>
-      <el-button @click="removeModel">移除模型</el-button>
+  <div class="speace-view-box" id="speace-view-box">
+    <div id="myCanvasContainer" @drop="handleDrag($event)"></div>
+    <div>
+      <div class="tool-bar-box">
+        <div id="WebGL-output"></div>
+        <div id="Stats-output"></div>
+        <div id="label"></div>
+        <el-button>上传模型</el-button>
+        <el-button @click="removeModel">移除模型</el-button>
 
-      <el-button>预览</el-button>
-      <el-button>保存</el-button>
+        <el-button>预览</el-button>
+        <el-button>保存</el-button>
+      </div>
+
+      <div class="tabke-bar-box">
+        <el-button type="text" @click="handleFullScreen()">
+          <img src="@/assets/images/toNormalScreen.png" v-if="isFullScreen">
+          <img src="@/assets/images/toFullscreen.png" v-else>
+        </el-button>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
     import * as THREE from "three"
+    import { requestFullScreen ,exitFullscreen } from '../../utils/FullScreen.js'
     import { OBJLoader, MTLLoader } from 'three-obj-mtl-loader';
 
-    // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
+    import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
     import { TransformControls } from "three/examples/jsm/controls/TransformControls"
     import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
     import { DatGui } from "three/examples/js/libs/dat.gui.min.js"
     import { StatsJs } from "three/examples/js/libs/stats.min.js"
-    // import { DragControls } from "three/examples/jsm/controls/DragControls"
+    import { DragControls } from "three/examples/jsm/controls/DragControls"
 
     export default {
         name: "SpaceView",
@@ -58,6 +68,8 @@
                 mouse: new THREE.Vector2(), //鼠标位置
                 hit: new THREE.Vector3(), //射线在参考面上的拾取点
                 plane: new THREE.Plane(), //拖拽参考面
+
+                isFullScreen: false,
             }
         },
         created() {
@@ -76,7 +88,7 @@
             initCamera() {
                 const aspect = window.innerWidth / 1080; //宽高可根据实际项目要求更改 如果是窗口高度改为innerHeight
                 this.camera = new THREE.PerspectiveCamera(100, aspect, 1, 1000);
-                this.camera.position.set(100, 50, 0);
+                this.camera.position.set(300, 0, 0);
                 this.camera.lookAt(new THREE.Vector3(0, 0, 0)); // 让相机指向原点
 
                 const pointLight = new THREE.PointLight(0xffffff, 0.8); //创建一个点灯光
@@ -114,8 +126,8 @@
                  * colorCenterLine  网格中心线颜色
                  * colorGrid    网格其他线颜色
                  */
-                var gridHelper = new THREE.GridHelper(1200, 50, 0xCD3700, 0x4A4A4A);
-                gridHelper.position.y = -100;
+                var gridHelper = new THREE.GridHelper(1000, 50, 0xCD3700, 0x4A4A4A);
+                gridHelper.position.y = -200;
                 gridHelper.position.x = 0;
                 this.scene.add(gridHelper);
 
@@ -124,40 +136,41 @@
 
             //初始化控制器
             initControls() {
-                this.container = document.getElementById('container');
-                this.container.appendChild(this.renderer.domElement);
+                this.container = document.getElementById('myCanvasContainer');
+                this.container.append(this.renderer.domElement);
 
-                // this.controls = new OrbitControls(this.camera, this.renderer.domElement);
-                // this.controls.rotateSpeed = 1  // 转速
-                // this.controls.autoRotate = false  // 是否自动旋转
-                // this.controls.autoRotateSpeed = 1  //自动旋转速度
-                // this.controls.enableZoom = true;  //是否可以缩放
-                // this.controls.enablePan = true; //是否开启右键拖拽
-                //
-                // this.controls.target.set(0, 0, 0);
-                // this.controls.minDistance = 50; // 视角最小距离
-                // this.controls.maxDistance = 1000;   // 视角最远距离
-                // this.controls.maxPolarAngle = Math.PI / 3;  // 最大角度
-                // this.controls.update();
-
-                // 初始化轨迹球控件
-                this.controls = new TrackballControls(this.camera, this.renderer.domElement);
-                this.controls.noRotate = false;
-                this.controls.noPan = false;
+                //初始化相机控制器
+                this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+                this.controls.rotateSpeed = 1  // 转速
+                this.controls.autoRotate = false  // 是否自动旋转
+                this.controls.autoRotateSpeed = 1  //自动旋转速度
                 this.controls.enableZoom = true;  //是否可以缩放
                 this.controls.enablePan = true; //是否开启右键拖拽
-                this.controls.staticMoving = true;// 静止移动，为 true 则没有惯性
-                this.controls.dynamicDampingFactor = 0.2;// 阻尼系数 越小 则滑动越大
 
                 this.controls.target.set(0, 0, 0);
-                this.controls.rotateSpeed = 2;// 旋转速度
-                this.controls.zoomSpeed = 0.2;// 缩放速度
-                this.controls.panSpeed = 0.5;// 平controls
-
-
-                this.controls.minDistance = 50;  // 视角最小距离
-                this.controls.maxDistance = 500; // 视角最远距离
+                this.controls.minDistance = 100; // 视角最小距离
+                this.controls.maxDistance = 5000;   // 视角最远距离
                 this.controls.maxPolarAngle = Math.PI / 2;  // 最大角度
+                this.controls.update();
+
+                // 初始化轨迹球控件
+                // this.controls = new TrackballControls(this.camera, this.renderer.domElement);
+                // this.controls.noRotate = false;
+                // this.controls.noPan = false;
+                // this.controls.enableZoom = true;  //是否可以缩放
+                // this.controls.enablePan = true; //是否开启右键拖拽
+                // this.controls.staticMoving = false;// 静止移动，为 true 则没有惯性
+                // this.controls.dynamicDampingFactor = 0.2;// 阻尼系数 越小 则滑动越大
+                //
+                // this.controls.target.set(0, 0, 0);
+                // this.controls.rotateSpeed = 4;// 旋转速度
+                // this.controls.zoomSpeed = 0.8;// 缩放速度
+                // this.controls.panSpeed = 0.5;// 平controls
+                //
+                //
+                // this.controls.minDistance = 100;  // 视角最小距离
+                // this.controls.maxDistance = 5000; // 视角最远距离
+                // this.controls.maxPolarAngle = Math.PI / 2;  // 最大角度
             },
 
 
@@ -209,7 +222,7 @@
             updateData() {
                 // this.stats.update();
                 this.controls.update();
-                this.controls.handleResize();
+                // this.controls.handleResize();
             },
 
             // 初始化
@@ -306,10 +319,11 @@
                 //导入资源
                 // mtlLoader.load('', function (materials) {
                     // objLoader.setMaterials(materials);  //@params object 传入的模型，只能是单个模型，也可能是一个group,视构建的model而定
-                    objLoader.load('@/assets/models/diamond/diamond-brilliantcut.obj', (obj)=> { //obj模型所在url
+                    objLoader.load('/models/diamond/diamond-brilliantcut.obj', (obj)=> { //obj模型所在url
                             obj.position.set(height / 50, 0, width / 50);//模型摆放的位置
                             obj.scale.set(0.1, 0.1, 0.1);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
                             obj.name='zhuanshi'; //添加名称
+
                             this.initDragControls(obj)
                             this.scene.add(obj);//将模型加入场景中
                             this.objects.push(obj)
@@ -326,12 +340,12 @@
             },
 
             //
-            loadmogu(width, height) {
+            loadchangfangti(width, height) {
 
                 //轮廓大小
                 var rollOverGeo = new THREE.BoxGeometry(2, 2, 5);
                 //材质
-                var rollOverMaterial = new THREE.MeshBasicMaterial({color: 0xff0000, opacity: 0.5, transparent: true});
+                var rollOverMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00, opacity: 1, transparent: true});
                 //加载 轮廓 材质
                 var rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
 
@@ -348,10 +362,7 @@
             },
 
             loadyuanzhu(){
-                // world 圆柱体
                 var geometry = new THREE.CylinderGeometry(20,20,100,40);
-                /*              var geometry = new THREE.CylinderBufferGeometry( 0, 10, 30, 4, 1 );
-                */
                 var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 
                 var mesh = new THREE.Mesh( geometry, material );
@@ -377,13 +388,13 @@
                 let y = parseFloat(e.y.toFixed(2));
 
                 switch (dataValue) {
-                    case 'zhuanshi':
+                    case 'zhuanshi': //钻石
                         this.loadzhuanshi(x, y);
                         break;
-                    case 'changfangti':
-                        this.loadmogu(x, y);
+                    case 'changfangti': //长方体
+                        this.loadchangfangti(x, y);
                         break;
-                    case 'yuanzhu':
+                    case 'yuanzhu': //圆柱体
                         this.loadyuanzhu(x, y);
                         break;
                 }
@@ -400,6 +411,18 @@
 
                 this.scene.children.pop()
             },
+
+
+            handleFullScreen(){
+                let dom = document.getElementById('speace-view-box');
+                if (this.isFullScreen){
+                    exitFullscreen();
+                    this.isFullScreen = false;
+                }else{
+                    requestFullScreen(dom);
+                    this.isFullScreen = true;
+                }
+            }
         },
 
         mounted() {
@@ -413,19 +436,24 @@
   .speace-view-box{
     width: 100%;
     height: 100%;
-    background: #2e2e2e;
+    padding: 10px;
   }
 
   #container{
-    width: 100%;
-    height: 100%;
+    max-height: 800px;
   }
 
   .tool-bar-box{
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 20px;
+    left: 21%;
     opacity: 0.5;
   }
 
+  .tabke-bar-box{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    opacity: 0.5;
+  }
 </style>
