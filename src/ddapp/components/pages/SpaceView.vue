@@ -33,6 +33,10 @@
     import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
     import { DragControls } from "three/examples/jsm/controls/DragControls"
 
+    import { DDSLoader } from 'three/examples/jsm/loaders/DDSLoader.js';
+    import {OBJLoader2} from "three/examples/jsm/loaders/OBJLoader2";
+    import { MtlObjBridge } from "three/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js";
+
     export default {
         name: "SpaceView",
         data(){
@@ -388,38 +392,45 @@
             },
 
             /*****-------------------------------加入模型-------------------------------****/
-
+            /** 导入外部资源**/
             loadModel(name,optionsValue, modelUrl, mtlUrl){
-                let objLoader = new OBJLoader();
-                let mtlLoader = new MTLLoader();
 
-                //导入资源
-                mtlLoader.setCrossOrigin('');
-                mtlLoader.setPath(modelUrl);
-                mtlLoader.load(mtlUrl, (materials) =>{
-                    materials.preload();
+                const mtlLoader = new MTLLoader();
+                const objLoader = new OBJLoader2();
 
-                    objLoader.setMaterials(materials);  //@params object 传入的模型，只能是单个模型，也可能是一个group,视构建的model而定
-                    objLoader.load(modelUrl, (obj)=> { //obj模型所在url
+                var onError = function (xhr) { console.log("An error happened"); };
+                var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
 
-                            obj.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
-                            obj.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-                            obj.name = name; //添加名称
-                            obj.castShadow = true;
-                            obj.receiveShadow = true;
+                var manager = new THREE.LoadingManager();
+                manager.addHandler( /\.dds$/i, new DDSLoader() );
 
-                            this.group.add(obj);
-                            this.addToObjects(obj)
-                        },
-                        // called while loading is progressing
-                        function (xhr) {
-                            console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
-                        },
-                        // called when loading has errors
-                        function (error) {
-                            console.log("An error happened");
-                        })
-                })
+                mtlLoader.load(mtlUrl, (mtlParseResult) => {
+                    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+
+                    //加载模型后，遍历所有材质，设置成双面。
+                    // for (const material of Object.values(materials)) {
+                    //     material.side = THREE.DoubleSide;
+                    // }
+
+                    objLoader.addMaterials(materials);
+                    objLoader.load(modelUrl, (object) => {
+
+                        object.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
+                        object.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+
+                        object.name = name; //添加名称
+
+                        this.addToObjects(object)
+
+                    },onProgress, onError);
+                });
+
+
+
+
+
+
+
             },
 
 
@@ -503,7 +514,13 @@
                         options.x =  1
                         options.y =  1
                         options.z =  1
-                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','')
+                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','/models/Tabel/table.mtl')
+                        break;
+                    case 'firstgun': //枪
+                        options.x =  10
+                        options.y =  10
+                        options.z =  10
+                        this.loadModel( dataValue,options,'/models/obj/KSR-29 sniper rifle new_obj.obj','');
                         break;
                 }
             },

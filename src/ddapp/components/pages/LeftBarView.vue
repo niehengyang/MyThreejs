@@ -40,6 +40,12 @@
 
         </el-collapse-item>
         <el-collapse-item title="仓库" name="3">
+          <ul>
+            <li>
+              <img class="left-bar-img" @click="handleOption('firstgun')" src="@/assets/images/l76324-sniper-rifle-ksr-29-new-34178.png"
+                   alt="图片" widget-type="firstgun" draggable="true">
+            </li>
+          </ul>
         </el-collapse-item>
         <el-collapse-item title="厂房" name="4">
         </el-collapse-item>
