@@ -54,6 +54,7 @@
                 //objects是指场景中的实体集合
                 objects: [],
 
+                group: '',
                 //projector是可能指屏幕和场景转换工具 renderer是指场景渲染，能把场景呈现到浏览器里
                 projector: '',
                 selectObject: '',
@@ -76,6 +77,9 @@
             initScene() {
                 this.scene = new THREE.Scene();
                 this.scene.background = new THREE.Color(0x050505);
+
+                this.group = new THREE.Group();
+                this.scene.add(this.group);
             },
 
             /** 相机**/
@@ -187,6 +191,7 @@
                 // this.controls.minDistance = 100;  // 视角最小距离
                 // this.controls.maxDistance = 5000; // 视角最远距离
                 // this.controls.maxPolarAngle = Math.PI / 2;  // 最大角度
+
             },
 
 
@@ -229,7 +234,6 @@
                 // dragControls.addEventListener('dragend', function (event) {
                 //     this.controls.enabled = true;
                 // });
-
 
             },
 
@@ -292,10 +296,8 @@
                 //通过鼠标点击的位置(二维坐标)和当前相机的矩阵计算出射线位置
                 raycaster.setFromCamera(mouse, this.camera);
 
-               var intersects = '';
-
                 // 获取与射线相交的对象数组，其中的元素按照距离排序，越近的越靠前
-                intersects = raycaster.intersectObjects(this.scene.children,false);
+                var intersects = raycaster.intersectObjects(this.objects,true);
 
                 //返回选中的对象
                 return intersects;
@@ -406,6 +408,7 @@
                             obj.castShadow = true;
                             obj.receiveShadow = true;
 
+                            this.group.add(obj);
                             this.addToObjects(obj)
                         },
                         // called while loading is progressing
@@ -431,7 +434,7 @@
 
                 rollOverMesh.position.set(height / 10, 0, width / 10);//模型摆放的位置
                 rollOverMesh.scale.set(20, 20, 20);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-                rollOverMesh.name = 'changfangti' // 使用name属性标记内部模型的名称
+                rollOverMesh.name = '长方体' // 使用name属性标记内部模型的名称
                 this.addToObjects(rollOverMesh)
             },
 
@@ -444,7 +447,7 @@
                 mesh.scale.set(1, 1, 1);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
                 mesh.updateMatrix();
                 mesh.matrixAutoUpdate = true;
-                mesh.name = 'yuanzhu' // 使用name属性标记内部模型的名称
+                mesh.name = '圆柱体' // 使用name属性标记内部模型的名称
 
                 this.addToObjects(mesh)
             },
@@ -461,8 +464,8 @@
                 sphere.position.set(height / 10, 0, width / 10);//模型摆放的位置
                 sphere.scale.set(1, 1, 1);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
 
-                sphere.name = 'qiuti' // 使用name属性标记内部模型的名称
-                sphere.castShadow=true;
+                sphere.name = '球体' // 使用name属性标记内部模型的名称
+                sphere.castShadow = true;
                 this.addToObjects(sphere)
             },
 
@@ -513,7 +516,7 @@
 
                 //加入到场景
                 this.scene.add(mush);
-                this.objects.push(mush)
+                this.objects.push(mush);
             },
 
             /** 移除模型**/
