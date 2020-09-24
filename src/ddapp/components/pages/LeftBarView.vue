@@ -33,6 +33,14 @@
                 <img class="left-bar-img" @click="handleOption('zhuozi')" src="@/assets/images/l92748-cinema4d-table-66762.jpg"
                      alt="图片" widget-type="zhuozi" draggable="true">
               </li>
+              <li>
+                <img class="left-bar-img" @click="handleOption('yizi')" src="@/assets/images/5d859e93020d448db0bcc4a98857ab46.jpg"
+                     alt="图片" widget-type="yizi" draggable="true">
+              </li>
+              <li>
+                <img class="left-bar-img" @click="handleOption('computer')" src="@/assets/images/7394f63115744d8888a5fea9a631a4d5.jpg"
+                     alt="图片" widget-type="computer" draggable="true">
+              </li>
             </ul>
           </div>
         </el-collapse-item>

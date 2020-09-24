@@ -35,6 +35,7 @@
 
     import { DDSLoader } from 'three/examples/jsm/loaders/DDSLoader.js';
     import {OBJLoader2} from "three/examples/jsm/loaders/OBJLoader2";
+
     import { MtlObjBridge } from "three/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js";
 
     export default {
@@ -204,6 +205,7 @@
 
                 var transformControls = new TransformControls(this.camera, this.renderer.domElement);
                 this.scene.add( transformControls);
+
                 transformControls.addEventListener('mouseDown', (evt) => {
                     // 平移开始时禁用相机控件
                     this.controls.enabled = false;
@@ -221,11 +223,11 @@
 
 
 
-                // // 初始化拖拽控件
+                // 初始化拖拽控件
                 // var dragControls = new DragControls(obj, this.camera, this.renderer.domElement);
                 //
                 // // 鼠标略过事件
-                // dragControls.addEventListener('mouseOn', function (event) {
+                // dragControls.addEventListener('hoveron', function (event) {
                 //     // 让变换控件对象和选中的对象绑定
                 //     transformControls.attach(obj);
                 //
@@ -352,6 +354,7 @@
                 // 获取选中最近的 Mesh 对象
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
                     let selectObj = intersects[0].object;
+
                     this.changeMaterial(selectObj)
                     this.renderDiv(selectObj)
                 }else{
@@ -365,9 +368,16 @@
                 // 获取 raycaster 和所有模型相交的数组，其中的元素按照距离排序，越近的越靠前
                 var intersects = this.getIntersects(event);
 
+                console.log(intersects);
+
                 // 获取选中最近的 Mesh 对象
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
                     this.selectObject = intersects[0].object;
+
+                    if ( this.selectObject.parent.type == 'Object3D'){
+                        this.initDragControls(this.selectObject.parent)
+                        return ;
+                    }
                     this.initDragControls(this.selectObject)
                 } else {
                     alert("未选中 Mesh!");
@@ -404,6 +414,7 @@
                 var manager = new THREE.LoadingManager();
                 manager.addHandler( /\.dds$/i, new DDSLoader() );
 
+                console.log(mtlUrl);
                 mtlLoader.load(mtlUrl, (mtlParseResult) => {
                     const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
 
@@ -411,7 +422,6 @@
                     // for (const material of Object.values(materials)) {
                     //     material.side = THREE.DoubleSide;
                     // }
-
                     objLoader.addMaterials(materials);
                     objLoader.load(modelUrl, (object) => {
 
@@ -423,7 +433,9 @@
                         this.addToObjects(object)
 
                     },onProgress, onError);
+
                 });
+
 
 
 
@@ -496,7 +508,7 @@
 
                 switch (dataValue) {
                     case 'zhuanshi': //钻石
-                        this.loadModel( dataValue,options,'/models/diamond/diamond-brilliantcut.obj');
+                        this.loadModel( dataValue,options,'/models/diamond/diamond-brilliantcut.obj','');
                         break;
                     case 'changfangti': //长方体
                         this.loadchangfangti(x, y);
@@ -508,13 +520,19 @@
                         this.loadqiuti(x, y);
                         break;
                     case 'jingzi': //镜子
-                        this.loadModel(dataValue,options,'/models/other/tabletop-mirror.obj')
+                        this.loadModel(dataValue,options,'/models/other/tabletop-mirror.obj','')
                         break;
                     case 'zhuozi': //桌子
                         options.x =  1
                         options.y =  1
                         options.z =  1
-                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','/models/Tabel/table.mtl')
+                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','')
+                        break;
+                    case 'yizi': //椅子
+                        options.x =  0.2
+                        options.y =  0.2
+                        options.z =  0.2
+                        this.loadModel(dataValue,options,'/models/yizi/file.obj','')
                         break;
                     case 'firstgun': //枪
                         options.x =  10
@@ -522,14 +540,26 @@
                         options.z =  10
                         this.loadModel( dataValue,options,'/models/obj/KSR-29 sniper rifle new_obj.obj','');
                         break;
+                    case 'computer': //电脑
+                        options.x =  0.01
+                        options.y =  0.01
+                        options.z =  0.01
+                        this.loadModel( dataValue,options,'/models/computer/file.obj','');
+                        break;
                 }
             },
 
             /** 添加模型**/
             addToObjects(mush){
+
                 //添加控制
                 this.initDragControls(mush)
 
+                // var group = new THREE.Group();
+                // group.add(mush);
+
+                // var mesh = new THREE.Mesh();
+                // mesh.assign(mush);
 
                 //加入到场景
                 this.scene.add(mush);
