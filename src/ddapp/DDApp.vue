@@ -1,6 +1,6 @@
 <template>
   <div class="base-component" >
-    <div class="logo-item"><img src="@/assets/images/20200918164943.png" style="height: 34px"></div>
+<!--    <div class="logo-item"><img src="@/assets/images/20200918164943.png" style="height: 34px"></div>-->
     <el-row class="base-component-main">
       <left-bar-view class="left-bar-item" @optionChange="handleSelectChange"></left-bar-view>
       <space-view class="speace-view-item" :model-name="modelName"></space-view>
@@ -42,13 +42,16 @@
     flex-direction: row;
   }
   .left-bar-item{
-    width: 20%;
+    left: 10px;
+    top: 20px;
+    position: absolute;
+    width: 240px;
     height: 800px;
   }
 
   .speace-view-item{
-    width: 79%;
-    height: 800px;
+    width: 100%;
+    height: 100%;
   }
   .logo-item{
     width: 100%;

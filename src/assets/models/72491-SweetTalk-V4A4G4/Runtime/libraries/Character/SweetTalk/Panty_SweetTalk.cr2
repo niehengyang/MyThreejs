@@ -1,0 +1,5157 @@
+{
+
+version
+	{
+	number 6
+	}
+morphBinaryFile :Runtime:libraries:Character:SweetTalk:Panty_SweetTalk.pmd
+figureResFile :Runtime:Geometries:SweetTalk:Panty_SweetTalk.obj
+actor BODY:11
+	{
+
+	}
+controlProp GoalCenterOfMass:11
+	{
+
+	}
+controlProp CenterOfMass:11
+	{
+
+	}
+actor hip:11
+	{
+	storageOffset 0 0 0
+	geomHandlerGeom 13 hip  
+	}
+actor abdomen:11
+	{
+
+	}
+actor rThigh:11
+	{
+
+	}
+actor lThigh:11
+	{
+
+	}
+morphBinaryFile :Runtime:libraries:Character:SweetTalk:Panty_SweetTalk.pmd
+figureResFile :Runtime:Geometries:SweetTalk:Panty_SweetTalk.obj
+
+actor BODY:11
+	{
+	name    BODY
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	useZBuffer		1
+	parent UNIVERSE
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				collapsed 1
+				groupNode Translation
+					{
+					collapsed 1
+					parmNode xtran
+					parmNode ytran
+					parmNode ztran
+					}
+				groupNode Rotation
+					{
+					collapsed 1
+					parmNode yrot
+					parmNode zrot
+					parmNode xrot
+					}
+				groupNode Scale
+					{
+					collapsed 1
+					parmNode scale
+					parmNode xScale
+					parmNode yScale
+					parmNode zScale
+					}
+				}
+			groupNode Aiko 4
+				{
+				collapsed 1
+				parmNode Aiko4
+				parmNode Petite
+				parmNode Realistic
+				parmNode Stylized
+				}
+			groupNode The Girl 4
+				{
+				collapsed 1
+				parmNode The Girl 4 (Body)
+				}
+			groupNode Victoria 4
+				{
+				collapsed 1
+				groupNode Full Body
+					{
+					collapsed 1
+					parmNode Amazon
+					parmNode BodyBuilder
+					parmNode Bulk
+					parmNode Fitness
+					parmNode PearFigure
+					parmNode Voluptuous
+					parmNode Young
+					}
+				groupNode Glute
+					{
+					collapsed 1
+					parmNode GlutesSize
+					}
+				groupNode Legs-Foot
+					{
+					collapsed 1
+					parmNode ThighsThickness
+					parmNode ThighsTone
+					}
+				groupNode Lower Torso
+					{
+					collapsed 1
+					parmNode HipsSize
+					parmNode TorsoThickness
+					parmNode WaistWidth
+					}
+				}
+			groupNode Adjustment Morphs
+				{
+				collapsed 1
+				parmNode HipRSideDown
+				parmNode HipLSideDown
+				parmNode rButtock
+				parmNode lButtock
+				}
+			}
+		valueParm WaistWidth
+			{
+			name WaistWidth
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm TorsoThickness
+			{
+			name TorsoThickness
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm HipsSize
+			{
+			name HipsSize
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm ThighsTone
+			{
+			name ThighsTone
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm ThighsThickness
+			{
+			name ThighsThickness
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm GlutesSize
+			{
+			name GlutesSize
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Young
+			{
+			name Young
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Voluptuous
+			{
+			name Voluptuous
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm PearFigure
+			{
+			name PearFigure
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Fitness
+			{
+			name Fitness
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Bulk
+			{
+			name Bulk
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm BodyBuilder
+			{
+			name BodyBuilder
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Amazon
+			{
+			name Amazon
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm The Girl 4 (Body)
+			{
+			name The Girl 4 (Body)
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Stylized
+			{
+			name Stylized
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Realistic
+			{
+			name Realistic
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Petite
+			{
+			name Petite
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm Aiko4
+			{
+			name Aiko4
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm HipLSideDown
+			{
+			name HipLSideDown
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm HipRSideDown
+			{
+			name HipRSideDown
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm lButtock
+			{
+			name lButtock
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		valueParm rButtock
+			{
+			name rButtock
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		zOffsetA zOffset
+			{
+			name zOffset
+			initValue 0.006
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.006
+			}
+		yOffsetA yOffset
+			{
+			name yOffset
+			initValue 0.464
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.464
+			}
+		xOffsetA xOffset
+			{
+			name xOffset
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		propagatingScale scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		propagatingScaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		propagatingScaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		propagatingScaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateX xtran
+			{
+			name xtran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name ytran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name ztran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		xOffsetB xTranB
+			{
+			name xTranB
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		yOffsetB yTranB
+			{
+			name yTranB
+			initValue -0.464
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.464
+			}
+		zOffsetB zTranB
+			{
+			name zTranB
+			initValue -0.006
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.006
+			}
+		}
+	endPoint 0 0.74 0.25
+	origin 0 0.464 0.006
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+controlProp GoalCenterOfMass:11
+	{
+	name    GoalCenterOfMass 2
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		1
+	addToMenu	0
+	castsShadow		0
+	includeInDepthCue		0
+	useZBuffer		1
+	parent BODY:11
+	creaseAngle 80
+	channels
+		{
+		rotateY yRotate
+			{
+			name yrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xRotate
+			{
+			name xrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zRotate
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale Scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateX xTran
+			{
+			name xtran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY yTran
+			{
+			name ytran
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min 0
+			max 0
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ zTran
+			{
+			name ztran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 -0.1
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.382397 0.109165 0.948302 1 
+		KaColor 0 0 0 0 
+		KsColor 0.0986419 0.161968 0.0182562 1 
+		TextureColor 1 1 1 1 
+		NsExponent 50 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 0
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+controlProp CenterOfMass:11
+	{
+	name    CenterOfMass 2
+	off
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		0
+	includeInDepthCue		0
+	useZBuffer		0
+	parent GoalCenterOfMass:11
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				parmNode yRotate
+				parmNode xRotate
+				parmNode zRotate
+				parmNode Scale
+				parmNode xScale
+				parmNode yScale
+				parmNode zScale
+				parmNode xTran
+				parmNode yTran
+				parmNode zTran
+				}
+			}
+		rotateY yRotate
+			{
+			name yrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xRotate
+			{
+			name xrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zRotate
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		scale Scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.001
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		translateX xTran
+			{
+			name xtran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY yTran
+			{
+			name ytran
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min 0
+			max 0
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ zTran
+			{
+			name ztran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0 -0.1
+	origin 0 0 0
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode EDGESONLY
+	customMaterial	1
+	material Preview
+		{
+		KdColor 0.383587 0.0453505 0.490341 1 
+		KaColor 0 0 0 0 
+		KsColor 0.0610859 0.117429 0.105863 1 
+		TextureColor 1 1 1 1 
+		NsExponent 50 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		}
+	locked 0
+	backfaceCull 0
+	visibleInReflections 0
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+actor hip:11
+	{
+	name    hip
+	on
+	bend 1
+	dynamicsLock		1
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	useZBuffer		1
+	parent BODY:11
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				collapsed 1
+				groupNode Translation
+					{
+					collapsed 1
+					parmNode xtran
+					parmNode ytran
+					parmNode ztran
+					}
+				groupNode Rotation
+					{
+					collapsed 1
+					parmNode yrot
+					parmNode zrot
+					parmNode xrot
+					}
+				groupNode Scale
+					{
+					collapsed 1
+					parmNode scale
+					parmNode xScale
+					parmNode yScale
+					parmNode zScale
+					}
+				parmNode taper
+				}
+			groupNode Morph
+				{
+				parmNode rButtock
+				parmNode lButtock
+				parmNode HipRSideDown
+				parmNode HipLSideDown
+				parmNode Aiko4
+				parmNode Petite
+				parmNode Realistic
+				parmNode Stylized
+				parmNode The Girl 4 (Body)
+				parmNode Amazon
+				parmNode BodyBuilder
+				parmNode Bulk
+				parmNode Fitness
+				parmNode PearFigure
+				parmNode Voluptuous
+				parmNode Young
+				parmNode GlutesSize
+				parmNode ThighsThickness
+				parmNode ThighsTone
+				parmNode HipsSize
+				parmNode TorsoThickness
+				parmNode WaistWidth
+				}
+			}
+		targetGeom WaistWidth
+			{
+			name WaistWidth
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				WaistWidth
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom TorsoThickness
+			{
+			name TorsoThickness
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				TorsoThickness
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom HipsSize
+			{
+			name HipsSize
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				HipsSize
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom ThighsTone
+			{
+			name ThighsTone
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				ThighsTone
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom ThighsThickness
+			{
+			name ThighsThickness
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				ThighsThickness
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom GlutesSize
+			{
+			name GlutesSize
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				GlutesSize
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Young
+			{
+			name Young
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Young
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Voluptuous
+			{
+			name Voluptuous
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Voluptuous
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom PearFigure
+			{
+			name PearFigure
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				PearFigure
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Fitness
+			{
+			name Fitness
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Fitness
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Bulk
+			{
+			name Bulk
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Bulk
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom BodyBuilder
+			{
+			name BodyBuilder
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				BodyBuilder
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Amazon
+			{
+			name Amazon
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Amazon
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom The Girl 4 (Body)
+			{
+			name The Girl 4 (Body)
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				The Girl 4 (Body)
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Stylized
+			{
+			name Stylized
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Stylized
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Realistic
+			{
+			name Realistic
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Realistic
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Petite
+			{
+			name Petite
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Petite
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom Aiko4
+			{
+			name Aiko4
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				Aiko4
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom HipLSideDown
+			{
+			name HipLSideDown
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				HipLSideDown
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom HipRSideDown
+			{
+			name HipRSideDown
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				HipRSideDown
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom lButtock
+			{
+			name lButtock
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				lButtock
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		targetGeom rButtock
+			{
+			name rButtock
+			initValue 0
+			hidden 0
+			forceLimits 1
+			min -100000
+			max 100000
+			trackingScale 0.02
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			valueOpDeltaAdd
+				Figure 11
+				BODY:11
+				rButtock
+			deltaAddDelta 1.000000
+			numbDeltas 4763
+			useBinaryMorph 1
+			blendType 0
+			}
+		twistY abdomen_twisty
+			{
+			name abdomen_twisty
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor abdomen:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			startPt 0.451
+			endPt 0.512
+			flipped
+			sphereMatsRaw
+			0.065 0 0 0
+			0 0.0669153 0 0
+			0 0 0.0669153 0
+			-1e-005 0.550567 0.0062848 1
+
+			0.111061 0 0 0
+			0 0.111061 0 0
+			0 0 0.111061 0
+			-1e-006 0.510134 0.0121278 1
+			calcWeights
+			}
+		jointZ abdomen_jointz
+			{
+			name abdomen_jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 210 136.771 43.3053 330
+			otherActor abdomen:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			0.077 0 0 0
+			0 0.1069 0 0
+			0 0 0.1309 0
+			-1.79857e-005 0.561185 0.00659672 1
+
+			0.2391 0 0 0
+			0 0.1111 0 0
+			0 0 0.1111 0
+			0 0.5098 0.0123 1
+			doBulge 1
+			posBulgeLeft 0.035
+			posBulgeRight 0
+			negBulgeLeft 0
+			negBulgeRight 0.035
+			jointMult 1
+			calcWeights
+			}
+		jointX abdomen_jointx
+			{
+			name abdomen_jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 235.28 127.771 60.467 323.176
+			otherActor abdomen:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			0.065 0 0 0
+			0 0.0889805 -0.0517173 0
+			0 0.0497091 0.0855254 0
+			0 0.5506 0.0063 1
+
+			0.1111 0 0 0
+			0 0.1111 0 0
+			0 0 0.1111 0
+			0 0.5101 0.0121 1
+			doBulge 1
+			posBulgeLeft 0.02
+			posBulgeRight -0.04
+			negBulgeLeft -0.055
+			negBulgeRight 0.025
+			jointMult 1
+			calcWeights
+			}
+		twistY rThigh_twisty
+			{
+			name rThigh_twisty
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor rThigh:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			startPt 0.375
+			endPt 0.241601
+			flipped
+			sphereMatsRaw
+			0.0719515 0.0389015 0 0
+			-0.076947 0.14232 0 0
+			0 0 0.065 0
+			-0.0657 0.2924 -0.008 1
+
+			0.0670938 0.0184711 0.0124908 0
+			-0.0399955 0.145296 -2.56857e-005 0
+			-0.0236321 -0.00648107 0.136523 0
+			-0.0699 0.352 -0.011 1
+			calcWeights
+			}
+		jointZ rThigh_jointz
+			{
+			name rThigh_jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles -52.6155 -74.898 -107.677 102.413
+			otherActor rThigh:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			0.0617655 -0.00194823 0 0
+			0.00409177 0.129723 0 0
+			0 0 0.1698 0
+			-0.0531 0.26 -0.00819623 1
+
+			0.065174 0.0178247 0.0208112 0
+			-0.0397478 0.145364 -2.56857e-005 0
+			-0.039388 -0.0107467 0.132555 0
+			-0.0379715 0.372254 -0.010175 1
+			doBulge 1
+			posBulgeLeft 0
+			posBulgeRight 0
+			negBulgeLeft -0.08
+			negBulgeRight 0
+			jointMult 1
+			calcWeights
+			}
+		jointX rThigh_jointx
+			{
+			name rThigh_jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 74.464 -75.075 -100.019 121.037
+			otherActor rThigh:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			0.0604637 0.0549703 0 0
+			-0.100891 0.110973 -0.00263325 0
+			-0.000493931 0.000543292 0.0418205 0
+			-0.0722149 0.285506 0.0442696 1
+
+			0.0678748 0.0252605 0.0240349 0
+			-0.0586231 0.157547 -2.86515e-005 0
+			-0.0430236 -0.0159839 0.138298 0
+			-0.0951141 0.396792 0.0184764 1
+			doBulge 0
+			jointMult 1
+			calcWeights
+			}
+		twistY lThigh_twisty
+			{
+			name lThigh_twisty
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor lThigh:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			startPt 0.375
+			endPt 0.241601
+			flipped
+			sphereMatsRaw
+			-0.0719515 0.0389015 0 0
+			0.076947 0.14232 0 0
+			0 0 0.065 0
+			0.0657 0.2924 -0.008 1
+
+			-0.0670938 0.0184711 0.0124908 0
+			0.0399955 0.145296 -2.56857e-005 0
+			0.0236321 -0.00648107 0.136523 0
+			0.0699 0.352 -0.011 1
+			calcWeights
+			}
+		jointZ lThigh_jointz
+			{
+			name lThigh_jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 77.587 -72.323 -105.102 232.616
+			otherActor lThigh:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			-0.0617655 -0.00194823 0 0
+			-0.00409177 0.129723 0 0
+			0 0 0.1698 0
+			0.0531 0.26 -0.00819623 1
+
+			-0.065174 0.0178247 0.0208112 0
+			0.0397478 0.145364 -2.56857e-005 0
+			0.039388 -0.0107467 0.132555 0
+			0.0379715 0.372254 -0.010175 1
+			doBulge 1
+			posBulgeLeft 0
+			posBulgeRight -0.08
+			negBulgeLeft 0
+			negBulgeRight 0
+			jointMult 1
+			calcWeights
+			}
+		jointX lThigh_jointx
+			{
+			name lThigh_jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 74.464 -75.075 -100.019 121.037
+			otherActor lThigh:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			flipped
+			sphereMatsRaw
+			-0.0604637 0.0549703 0 0
+			0.100891 0.110973 -0.00263325 0
+			0.000493931 0.000543292 0.0418205 0
+			0.0722149 0.285506 0.0442696 1
+
+			-0.0678748 0.0252605 0.0240349 0
+			0.0586231 0.157547 -2.86515e-005 0
+			0.0430236 -0.0159839 0.138298 0
+			0.0951141 0.396792 0.0184764 1
+			doBulge 0
+			jointMult 1
+			calcWeights
+			}
+		taperY taper
+			{
+			name taper
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.04
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		smoothScaleY abdomen_smooY
+			{
+			name abdomen_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones -100 -99 0.433 0.476
+			otherActor abdomen:11
+			sphereMatsRaw
+			0.066 0 0 0
+			0 0.178 0 0
+			0 0 0.094 0
+			-0.00205224 0.263479 -0.000247074 1
+
+			0.105504 0 0 0
+			0 0.2706 0 0
+			0 0 0.167406 0
+			0 0.253024 -0.00402734 1
+			calcWeights
+			}
+		smoothScaleY rThigh_smooY
+			{
+			name rThigh_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones 0.484 0.484 99 100
+			otherActor rThigh:11
+			sphereMatsRaw
+			0.0979184 -0.113985 0 0
+			0.0501535 0.0430841 0 0
+			0 0 0.15 0
+			0.0146393 0.425908 -0.0382828 1
+
+			0.2 0 0 0
+			0 0.2 0 0
+			0 0 0.2 0
+			0.00243996 0.444003 0.0343209 1
+			calcWeights
+			}
+		smoothScaleY lThigh_smooY
+			{
+			name lThigh_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones 0.484 0.484 99 100
+			otherActor lThigh:11
+			sphereMatsRaw
+			-0.0979184 -0.113985 0 0
+			-0.0501535 0.0430841 0 0
+			0 0 0.15 0
+			-0.0146393 0.425908 -0.0382828 1
+
+			-0.2 0 0 0
+			0 0.2 0 0
+			0 0 0.2 0
+			-0.00243996 0.444003 0.0343209 1
+			calcWeights
+			}
+		zOffsetA zOffset
+			{
+			name zOffset
+			initValue 0.00298
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.00298
+			}
+		yOffsetA yOffset
+			{
+			name yOffset
+			initValue 0.406988
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.406988
+			}
+		xOffsetA xOffset
+			{
+			name xOffset
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		scale scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.8
+			max 1.2
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		rotateY yrot
+			{
+			name yrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -360000
+			max 360000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name zrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -360000
+			max 360000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name xrot
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -360000
+			max 360000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		xOffsetB xTranB
+			{
+			name xTranB
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		yOffsetB yTranB
+			{
+			name yTranB
+			initValue -0.406988
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.406988
+			}
+		zOffsetB zTranB
+			{
+			name zTranB
+			initValue -0.00298
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.00298
+			}
+		translateX xtran
+			{
+			name xtran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name ytran
+			initValue -2.98023e-008
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  -2.98023e-008
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name ztran
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.001
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0.306988 0.00298
+	origin 0 0.406988 0.00298
+	orientation 0 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+actor abdomen:11
+	{
+	name    abdomen
+	on
+	bend 1
+	dynamicsLock		0
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	useZBuffer		1
+	parent hip:11
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				collapsed 1
+				groupNode Translation
+					{
+					parmNode xtran
+					parmNode ytran
+					parmNode ztran
+					}
+				groupNode Rotation
+					{
+					collapsed 1
+					parmNode yrot
+					parmNode zrot
+					parmNode xrot
+					}
+				groupNode Scale
+					{
+					collapsed 1
+					parmNode scale
+					parmNode xScale
+					parmNode yScale
+					parmNode zScale
+					}
+				parmNode taper
+				}
+			}
+		taperY taper
+			{
+			name taper
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.04
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		smoothScaleY hip_smooY
+			{
+			name hip_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones 0.433 0.476 99 100
+			otherActor hip:11
+			flipped
+			sphereMatsRaw
+			0.066 0 0 0
+			0 0.178 0 0
+			0 0 0.094 0
+			-0.00205224 0.263479 -0.000247074 1
+
+			0.105504 0 0 0
+			0 0.2706 0 0
+			0 0 0.167406 0
+			0 0.253024 -0.00402734 1
+			calcWeights
+			}
+		zOffsetA zOffset
+			{
+			name zOffset
+			initValue 0.006
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.006
+			}
+		yOffsetA yOffset
+			{
+			name yOffset
+			initValue 0.464
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.464
+			}
+		xOffsetA xOffset
+			{
+			name xOffset
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		scale scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.8
+			max 1.3
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		jointX jointx
+			{
+			name jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 235.28 127.771 60.467 323.176
+			otherActor hip:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			sphereMatsRaw
+			0.065 0 0 0
+			0 0.0889805 -0.0517173 0
+			0 0.0497091 0.0855254 0
+			0 0.5506 0.0063 1
+
+			0.1111 0 0 0
+			0 0.1111 0 0
+			0 0 0.1111 0
+			0 0.5101 0.0121 1
+			doBulge 1
+			posBulgeLeft 0.02
+			posBulgeRight -0.04
+			negBulgeLeft -0.055
+			negBulgeRight 0.025
+			jointMult 1
+			calcWeights
+			}
+		jointZ jointz
+			{
+			name jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 210 136.771 43.3053 330
+			otherActor hip:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			sphereMatsRaw
+			0.077 0 0 0
+			0 0.1069 0 0
+			0 0 0.1309 0
+			-1.79857e-005 0.561185 0.00659672 1
+
+			0.2391 0 0 0
+			0 0.1111 0 0
+			0 0 0.1111 0
+			0 0.5098 0.0123 1
+			doBulge 1
+			posBulgeLeft 0.035
+			posBulgeRight 0
+			negBulgeLeft 0
+			negBulgeRight 0.035
+			jointMult 1
+			calcWeights
+			}
+		twistY twisty
+			{
+			name twist
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor hip:11
+			matrixActor NULL
+			center 0 0.464 0.006
+			algorithm 0
+			startPt 0.451
+			endPt 0.512
+			sphereMatsRaw
+			0.065 0 0 0
+			0 0.0669153 0 0
+			0 0 0.0669153 0
+			-1e-005 0.550567 0.0062848 1
+
+			0.111061 0 0 0
+			0 0.111061 0 0
+			0 0 0.111061 0
+			-1e-006 0.510134 0.0121278 1
+			calcWeights
+			}
+		rotateY yrot
+			{
+			name twist
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -50
+			max 50
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name side-side
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -30
+			max 30
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name bend
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -20
+			max 30
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		xOffsetB xTranB
+			{
+			name xTranB
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0
+			}
+		yOffsetB yTranB
+			{
+			name yTranB
+			initValue -0.464
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.464
+			}
+		zOffsetB zTranB
+			{
+			name zTranB
+			initValue -0.006
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.006
+			}
+		translateX xtran
+			{
+			name xtran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name ytran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name ztran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0 0.516 -0.003
+	origin 0 0.464 0.006
+	orientation -0.960938 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+actor rThigh:11
+	{
+	name    rThigh
+	on
+	bend 1
+	dynamicsLock		0
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	useZBuffer		1
+	parent hip:11
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				collapsed 1
+				groupNode Translation
+					{
+					parmNode xtran
+					parmNode ytran
+					parmNode ztran
+					}
+				groupNode Rotation
+					{
+					collapsed 1
+					parmNode yrot
+					parmNode zrot
+					parmNode xrot
+					}
+				groupNode Scale
+					{
+					collapsed 1
+					parmNode scale
+					parmNode xScale
+					parmNode yScale
+					parmNode zScale
+					}
+				parmNode taper
+				}
+			}
+		taperY taper
+			{
+			name taper
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.04
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		smoothScaleY hip_smooY
+			{
+			name hip_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones -100 -99 0.484 0.484
+			otherActor hip:11
+			flipped
+			sphereMatsRaw
+			0.0979184 -0.113985 0 0
+			0.0501535 0.0430841 0 0
+			0 0 0.15 0
+			0.0146393 0.425908 -0.0382828 1
+
+			0.2 0 0 0
+			0 0.2 0 0
+			0 0 0.2 0
+			0.00243996 0.444003 0.0343209 1
+			calcWeights
+			}
+		zOffsetA zOffset
+			{
+			name zOffset
+			initValue 0.004
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.004
+			}
+		yOffsetA yOffset
+			{
+			name yOffset
+			initValue 0.397
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.397
+			}
+		xOffsetA xOffset
+			{
+			name xOffset
+			initValue -0.037
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.037
+			}
+		scale scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.8
+			max 2
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		jointX jointx
+			{
+			name jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 74.464 -75.075 -100.019 121.037
+			otherActor hip:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			sphereMatsRaw
+			0.0604637 0.0549703 0 0
+			-0.100891 0.110973 -0.00263325 0
+			-0.000493931 0.000543292 0.0418205 0
+			-0.0722149 0.285506 0.0442696 1
+
+			0.0678748 0.0252605 0.0240349 0
+			-0.0586231 0.157547 -2.86515e-005 0
+			-0.0430236 -0.0159839 0.138298 0
+			-0.0951141 0.396792 0.0184764 1
+			doBulge 0
+			jointMult 1
+			calcWeights
+			}
+		jointZ jointz
+			{
+			name jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles -52.6155 -74.898 -107.677 102.413
+			otherActor hip:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			sphereMatsRaw
+			0.0617655 -0.00194823 0 0
+			0.00409177 0.129723 0 0
+			0 0 0.1698 0
+			-0.0531 0.26 -0.00819623 1
+
+			0.065174 0.0178247 0.0208112 0
+			-0.0397478 0.145364 -2.56857e-005 0
+			-0.039388 -0.0107467 0.132555 0
+			-0.0379715 0.372254 -0.010175 1
+			doBulge 1
+			posBulgeLeft 0
+			posBulgeRight 0
+			negBulgeLeft -0.08
+			negBulgeRight 0
+			jointMult 1
+			calcWeights
+			}
+		twistY twisty
+			{
+			name twist
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor hip:11
+			matrixActor NULL
+			center -0.037 0.397 0.004
+			algorithm 0
+			startPt 0.375
+			endPt 0.241601
+			sphereMatsRaw
+			0.0719515 0.0389015 0 0
+			-0.076947 0.14232 0 0
+			0 0 0.065 0
+			-0.0657 0.2924 -0.008 1
+
+			0.0670938 0.0184711 0.0124908 0
+			-0.0399955 0.145296 -2.56857e-005 0
+			-0.0236321 -0.00648107 0.136523 0
+			-0.0699 0.352 -0.011 1
+			calcWeights
+			}
+		rotateY yrot
+			{
+			name twist
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -50
+			max 50
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name side-side
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -75
+			max 15
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name bend
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100
+			max 40
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		xOffsetB xTranB
+			{
+			name xTranB
+			initValue 0.037
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.037
+			}
+		yOffsetB yTranB
+			{
+			name yTranB
+			initValue -0.397
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.397
+			}
+		zOffsetB zTranB
+			{
+			name zTranB
+			initValue -0.004
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.004
+			}
+		translateX xtran
+			{
+			name xtran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name ytran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name ztran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint -0.028 0.209 -0.002
+	origin -0.037 0.397 0.004
+	orientation 1.80679 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+actor lThigh:11
+	{
+	name    lThigh
+	on
+	bend 1
+	dynamicsLock		0
+	hidden		0
+	addToMenu	1
+	castsShadow		1
+	includeInDepthCue		1
+	useZBuffer		1
+	parent hip:11
+	creaseAngle 80
+	channels
+		{
+		groups
+			{
+			groupNode Transforms
+				{
+				collapsed 1
+				groupNode Translation
+					{
+					parmNode xtran
+					parmNode ytran
+					parmNode ztran
+					}
+				groupNode Rotation
+					{
+					collapsed 1
+					parmNode yrot
+					parmNode zrot
+					parmNode xrot
+					}
+				groupNode Scale
+					{
+					collapsed 1
+					parmNode scale
+					parmNode xScale
+					parmNode yScale
+					parmNode zScale
+					}
+				parmNode taper
+				}
+			}
+		taperY taper
+			{
+			name taper
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.04
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		smoothScaleY hip_smooY
+			{
+			name hip_scaleY
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			smoothZones -100 -99 0.484 0.484
+			otherActor hip:11
+			flipped
+			sphereMatsRaw
+			-0.0979184 -0.113985 0 0
+			-0.0501535 0.0430841 0 0
+			0 0 0.15 0
+			-0.0146393 0.425908 -0.0382828 1
+
+			-0.2 0 0 0
+			0 0.2 0 0
+			0 0 0.2 0
+			-0.00243996 0.444003 0.0343209 1
+			calcWeights
+			}
+		zOffsetA zOffset
+			{
+			name zOffset
+			initValue 0.004
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.004
+			}
+		yOffsetA yOffset
+			{
+			name yOffset
+			initValue 0.397
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.397
+			}
+		xOffsetA xOffset
+			{
+			name xOffset
+			initValue 0.037
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue 0.037
+			}
+		scale scale
+			{
+			name scale
+			initValue 1
+			hidden 0
+			forceLimits 0
+			min 0.8
+			max 2
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleX xScale
+			{
+			name xScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleY yScale
+			{
+			name yScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		scaleZ zScale
+			{
+			name zScale
+			initValue 1
+			hidden 1
+			forceLimits 0
+			min 0.1
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  0
+				k  0  1
+				}
+			interpStyleLocked 0
+			}
+		jointX jointx
+			{
+			name jointx
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 74.464 -75.075 -100.019 121.037
+			otherActor hip:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			sphereMatsRaw
+			-0.0604637 0.0549703 0 0
+			0.100891 0.110973 -0.00263325 0
+			0.000493931 0.000543292 0.0418205 0
+			0.0722149 0.285506 0.0442696 1
+
+			-0.0678748 0.0252605 0.0240349 0
+			0.0586231 0.157547 -2.86515e-005 0
+			0.0430236 -0.0159839 0.138298 0
+			0.0951141 0.396792 0.0184764 1
+			doBulge 0
+			jointMult 1
+			calcWeights
+			}
+		jointZ jointz
+			{
+			name jointz
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			angles 77.587 -72.323 -105.102 232.616
+			otherActor hip:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			sphereMatsRaw
+			-0.0617655 -0.00194823 0 0
+			-0.00409177 0.129723 0 0
+			0 0 0.1698 0
+			0.0531 0.26 -0.00819623 1
+
+			-0.065174 0.0178247 0.0208112 0
+			0.0397478 0.145364 -2.56857e-005 0
+			0.039388 -0.0107467 0.132555 0
+			0.0379715 0.372254 -0.010175 1
+			doBulge 1
+			posBulgeLeft 0
+			posBulgeRight -0.08
+			negBulgeLeft 0
+			negBulgeRight 0
+			jointMult 1
+			calcWeights
+			}
+		twistY twisty
+			{
+			name twist
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			algorithm 0
+			otherActor hip:11
+			matrixActor NULL
+			center 0.037 0.397 0.004
+			algorithm 0
+			startPt 0.375
+			endPt 0.241601
+			sphereMatsRaw
+			-0.0719515 0.0389015 0 0
+			0.076947 0.14232 0 0
+			0 0 0.065 0
+			0.0657 0.2924 -0.008 1
+
+			-0.0670938 0.0184711 0.0124908 0
+			0.0399955 0.145296 -2.56857e-005 0
+			0.0236321 -0.00648107 0.136523 0
+			0.0699 0.352 -0.011 1
+			calcWeights
+			}
+		rotateY yrot
+			{
+			name twist
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -50
+			max 50
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateZ zrot
+			{
+			name side-side
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -15
+			max 75
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		rotateX xrot
+			{
+			name bend
+			initValue 0
+			hidden 0
+			forceLimits 0
+			min -100
+			max 40
+			trackingScale 1
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		xOffsetB xTranB
+			{
+			name xTranB
+			initValue -0.037
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.037
+			}
+		yOffsetB yTranB
+			{
+			name yTranB
+			initValue -0.397
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.397
+			}
+		zOffsetB zTranB
+			{
+			name zTranB
+			initValue -0.004
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.004
+			keys
+				{
+				static  1
+				k  0  0
+				}
+			interpStyleLocked 0
+			staticValue -0.004
+			}
+		translateX xtran
+			{
+			name xtran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateY ytran
+			{
+			name ytran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		translateZ ztran
+			{
+			name ztran
+			initValue 0
+			hidden 1
+			forceLimits 0
+			min -100000
+			max 100000
+			trackingScale 0.002
+			keys
+				{
+				static  0
+				k  0  0
+				}
+			interpStyleLocked 0
+			}
+		}
+	endPoint 0.028 0.209 -0.002
+	origin 0.037 0.397 0.004
+	orientation 1.80679 0 0
+	displayOrigin		0
+	displayMode USEPARENT
+	customMaterial	0
+	locked 0
+	backfaceCull 0
+	visibleInReflections 1
+	visibleInRender 1
+	displacementBounds 0
+	shadingRate 0.2
+	smoothPolys 1
+	}
+
+figure 
+	{
+	name    Panty_SweetTalk
+	root    BODY:11
+	addChild    GoalCenterOfMass:11 
+			 BODY:11
+	addChild    CenterOfMass:11 
+			 GoalCenterOfMass:11
+	addChild    hip:11 
+			 BODY:11
+	addChild    abdomen:11 
+			 hip:11
+	addChild    rThigh:11 
+			 hip:11
+	addChild    lThigh:11 
+			 hip:11
+	defaultPick hip:11 
+	displayOn 1 
+	weld    abdomen:11  
+			 hip:11
+	weld    rThigh:11  
+			 hip:11
+	weld    lThigh:11  
+			 hip:11
+	allowsBending 1 
+	figureType 1318 
+	origFigureType 1318 
+	canonType 8 
+	conforming 0
+	material SweetTalkPantyEdge
+		{
+		KdColor 0.0666667 0.0666667 0.0666667 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 0.8 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap ":Runtime:textures:SweetTalk:SweetTalkRefl.jpg"
+ 				0 0 
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 0.1 
+		shaderTree
+			{
+			node "poser" "PoserSurface"
+				{
+				name "PoserSurface"
+				pos 10 10
+				showPreview 1
+				nodeInput "Diffuse_Color"
+					{
+					name "Diffuse_Color"
+					value 0.0666667 0.0666667 0.0666667
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Diffuse_Value"
+					{
+					name "Diffuse_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Color"
+					{
+					name "Specular_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Value"
+					{
+					name "Specular_Value"
+					value 0.8 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Roughness"
+					{
+					name "Highlight_Size"
+					value 0.1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Color"
+					{
+					name "Ambient_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Value"
+					{
+					name "Ambient_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Max"
+					{
+					name "Transparency"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Min"
+					{
+					name "Transparency_Edge"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Falloff"
+					{
+					name "Transparency_Falloff"
+					value 0.6 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Color"
+					{
+					name "Translucence_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Value"
+					{
+					name "Translucence_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Reflection_Color"
+					{
+					name "Reflection_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node "Sphere_Map"
+					file "" 
+					}
+				nodeInput "Reflection_Value"
+					{
+					name "Reflection_Value"
+					value 0.1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Color"
+					{
+					name "Refraction_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Value"
+					{
+					name "Refraction_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Bump"
+					{
+					name "Bump"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Displacement"
+					{
+					name "Displacement"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateDiffuse"
+					{
+					name "Alternate_Diffuse"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateSpecular"
+					{
+					name "Alternate_Specular"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionLiteMult"
+					{
+					name "Reflection_Lite_Mult"
+					value 1 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionKdMult"
+					{
+					name "Reflection_Kd_Mult"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Gradient_Bump"
+					{
+					name "Gradient_Bump"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ShadowCatchOnly"
+					{
+					name "Shadow_Catch_Only"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ToonID"
+					{
+					name "ToonID"
+					value 79 0 32768
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			node "sphere_map" "Sphere_Map"
+				{
+				name "Sphere_Map"
+				pos 249 237
+				inputsCollapsed 1
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node "Image_Map"
+					file "" 
+					}
+				nodeInput "Rotation"
+					{
+					name "Rotation"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			node "image_map" "Image_Map"
+				{
+				name "Image_Map"
+				pos 249 266
+				inputsCollapsed 1
+				nodeInput "Image_Source"
+					{
+					name "Image_Source"
+					value 21 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file ":Runtime:textures:SweetTalk:SweetTalkRefl.jpg" 
+					}
+				nodeInput "Auto_Fit"
+					{
+					name "Auto_Fit"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "U_Scale"
+					{
+					name "U_Scale"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "V_Scale"
+					{
+					name "V_Scale"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "U_Offset"
+					{
+					name "U_Offset"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "V_Offset"
+					{
+					name "V_Offset"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Texture_Coords"
+					{
+					name "Texture_Coords"
+					value 1 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Image_Mapped"
+					{
+					name "Image_Mapped"
+					value 4 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Background"
+					{
+					name "Background"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Global_Coordinates"
+					{
+					name "Global_Coordinates"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Mirror_U"
+					{
+					name "Mirror_U"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Mirror_V"
+					{
+					name "Mirror_V"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Texture_Strength"
+					{
+					name "Texture_Strength"
+					value 1 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material SweetTalkPanty
+		{
+		KdColor 0.0666667 0.0666667 0.0666667 1 
+		KaColor 0 0 0 1 
+		KsColor 1 1 1 0.8 
+		TextureColor 1 1 1 1 
+		NsExponent 10 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap ":Runtime:textures:SweetTalk:SweetTalkRefl.jpg"
+ 				0 0 
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 0.1 
+		shaderTree
+			{
+			node "poser" "PoserSurface"
+				{
+				name "PoserSurface"
+				pos 10 10
+				showPreview 1
+				nodeInput "Diffuse_Color"
+					{
+					name "Diffuse_Color"
+					value 0.0666667 0.0666667 0.0666667
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Diffuse_Value"
+					{
+					name "Diffuse_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Color"
+					{
+					name "Specular_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Value"
+					{
+					name "Specular_Value"
+					value 0.8 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Roughness"
+					{
+					name "Highlight_Size"
+					value 0.1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Color"
+					{
+					name "Ambient_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Value"
+					{
+					name "Ambient_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Max"
+					{
+					name "Transparency"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Min"
+					{
+					name "Transparency_Edge"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Falloff"
+					{
+					name "Transparency_Falloff"
+					value 0.6 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Color"
+					{
+					name "Translucence_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Value"
+					{
+					name "Translucence_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Reflection_Color"
+					{
+					name "Reflection_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node "Sphere_Map"
+					file "" 
+					}
+				nodeInput "Reflection_Value"
+					{
+					name "Reflection_Value"
+					value 0.1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Color"
+					{
+					name "Refraction_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Value"
+					{
+					name "Refraction_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Bump"
+					{
+					name "Bump"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Displacement"
+					{
+					name "Displacement"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateDiffuse"
+					{
+					name "Alternate_Diffuse"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateSpecular"
+					{
+					name "Alternate_Specular"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionLiteMult"
+					{
+					name "Reflection_Lite_Mult"
+					value 1 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionKdMult"
+					{
+					name "Reflection_Kd_Mult"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Gradient_Bump"
+					{
+					name "Gradient_Bump"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ShadowCatchOnly"
+					{
+					name "Shadow_Catch_Only"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ToonID"
+					{
+					name "ToonID"
+					value 79 0 32768
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			node "sphere_map" "Sphere_Map"
+				{
+				name "Sphere_Map"
+				pos 249 237
+				inputsCollapsed 1
+				nodeInput "Color"
+					{
+					name "Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node "Image_Map"
+					file "" 
+					}
+				nodeInput "Rotation"
+					{
+					name "Rotation"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			node "image_map" "Image_Map"
+				{
+				name "Image_Map"
+				pos 249 266
+				inputsCollapsed 1
+				nodeInput "Image_Source"
+					{
+					name "Image_Source"
+					value 21 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file ":Runtime:textures:SweetTalk:SweetTalkRefl.jpg" 
+					}
+				nodeInput "Auto_Fit"
+					{
+					name "Auto_Fit"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "U_Scale"
+					{
+					name "U_Scale"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "V_Scale"
+					{
+					name "V_Scale"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "U_Offset"
+					{
+					name "U_Offset"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "V_Offset"
+					{
+					name "V_Offset"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Texture_Coords"
+					{
+					name "Texture_Coords"
+					value 1 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Image_Mapped"
+					{
+					name "Image_Mapped"
+					value 4 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Background"
+					{
+					name "Background"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Global_Coordinates"
+					{
+					name "Global_Coordinates"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Mirror_U"
+					{
+					name "Mirror_U"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Mirror_V"
+					{
+					name "Mirror_V"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Texture_Strength"
+					{
+					name "Texture_Strength"
+					value 1 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	material Preview
+		{
+		KdColor 0 0 0 1 
+		KaColor 0 0 0 1 
+		KsColor 0 0 0 1 
+		TextureColor 1 1 1 1 
+		NsExponent 50 
+		tMin 0 
+		tMax 0 
+		tExpo 0.6 
+		bumpStrength 1 
+		ksIgnoreTexture 0 
+		reflectThruLights 1 
+		reflectThruKd 0 
+		textureMap NO_MAP
+		bumpMap NO_MAP
+		reflectionMap NO_MAP
+		transparencyMap NO_MAP
+		ReflectionColor 1 1 1 1 
+		reflectionStrength 1 
+		shaderTree
+			{
+			node "poser" "PoserSurface"
+				{
+				name "PoserSurface"
+				pos 10 10
+				showPreview 1
+				nodeInput "Diffuse_Color"
+					{
+					name "Diffuse_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Diffuse_Value"
+					{
+					name "Diffuse_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Color"
+					{
+					name "Specular_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Highlight_Value"
+					{
+					name "Specular_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Roughness"
+					{
+					name "Highlight_Size"
+					value 0.02 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Color"
+					{
+					name "Ambient_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Ambient_Value"
+					{
+					name "Ambient_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Max"
+					{
+					name "Transparency"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Min"
+					{
+					name "Transparency_Edge"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Transparency_Falloff"
+					{
+					name "Transparency_Falloff"
+					value 0.6 0 100
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Color"
+					{
+					name "Translucence_Color"
+					value 0 0 0
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Translucence_Value"
+					{
+					name "Translucence_Value"
+					value 0 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Reflection_Color"
+					{
+					name "Reflection_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Reflection_Value"
+					{
+					name "Reflection_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Color"
+					{
+					name "Refraction_Color"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Refraction_Value"
+					{
+					name "Refraction_Value"
+					value 1 0 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Bump"
+					{
+					name "Bump"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Displacement"
+					{
+					name "Displacement"
+					value 1 -10 10
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateDiffuse"
+					{
+					name "Alternate_Diffuse"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "AlternateSpecular"
+					{
+					name "Alternate_Specular"
+					value 1 1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionLiteMult"
+					{
+					name "Reflection_Lite_Mult"
+					value 1 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ReflectionKdMult"
+					{
+					name "Reflection_Kd_Mult"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "Gradient_Bump"
+					{
+					name "Gradient_Bump"
+					value 1 -1 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ShadowCatchOnly"
+					{
+					name "Shadow_Catch_Only"
+					value 0 0 1
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				nodeInput "ToonID"
+					{
+					name "ToonID"
+					value 78 0 32768
+					parmR NO_PARM
+					parmG NO_PARM
+					parmB NO_PARM
+					node NO_NODE
+					file "" 
+					}
+				}
+			}
+		}
+	displayMode USEPARENT
+	locked 0
+	}
+	setGeomHandlerOffset 0 0.3487 0
+}
+

@@ -13,6 +13,10 @@
               <img class="left-bar-img" @click="handleOption('yuanzhu')" src="@/assets/images/OIP (5).jpg"
                    alt="图片" widget-type="yuanzhu" draggable="true">
             </li>
+            <li>
+              <img class="left-bar-img" @click="handleOption('qiuti')" src="@/assets/images/OIP (6).jpg"
+                   alt="图片" widget-type="qiuti" draggable="true">
+            </li>
           </ul>
 
           <div class="left-bar-img-box">
@@ -20,6 +24,14 @@
               <li>
                 <img class="left-bar-img" @click="handleOption('zhuanshi')" src="@/assets/images/fsdfs(2).jpg"
                      alt="图片" widget-type="zhuanshi" draggable="true">
+              </li>
+              <li>
+                <img class="left-bar-img" @click="handleOption('jingzi')" src="@/assets/images/50200009239445156201173242922_s.jpg"
+                     alt="图片" widget-type="jingzi" draggable="true">
+              </li>
+              <li>
+                <img class="left-bar-img" @click="handleOption('zhuozi')" src="@/assets/images/l92748-cinema4d-table-66762.jpg"
+                     alt="图片" widget-type="zhuozi" draggable="true">
               </li>
             </ul>
           </div>
@@ -53,7 +65,6 @@
             handleChange(val) {
                 console.log(val);
             },
-
             handleOption(name){
                 this.$emit('optionChange',{
                     name : name,
@@ -68,9 +79,11 @@
 
 <style scoped>
   .left-bar-component{
+    opacity: 0.6;
   }
 
   .left-bar-main{
+    background-color: #FFFFFF;
     padding: 8px;
   }
   .left-bar-img-box{
