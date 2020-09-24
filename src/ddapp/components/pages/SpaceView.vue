@@ -500,7 +500,7 @@
                         options.x =  1
                         options.y =  1
                         options.z =  1
-                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','/models/Tabel/table.mtl')
+                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','')
                         break;
                 }
             },
