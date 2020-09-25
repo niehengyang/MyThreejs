@@ -4,42 +4,23 @@
       组件栏
       <el-collapse v-model="activeNames"  @change="handleChange">
         <el-collapse-item title="测试模型" name="1" >
-          <ul>
-            <li>
-              <img class="left-bar-img" @click="handleOption('changfangti')" src="@/assets/images/OIP (4).jpg" alt="图片"
-                   widget-type="changfangti" draggable="true">
-            </li>
-            <li>
-              <img class="left-bar-img" @click="handleOption('yuanzhu')" src="@/assets/images/OIP (5).jpg"
-                   alt="图片" widget-type="yuanzhu" draggable="true">
-            </li>
-            <li>
-              <img class="left-bar-img" @click="handleOption('qiuti')" src="@/assets/images/OIP (6).jpg"
-                   alt="图片" widget-type="qiuti" draggable="true">
-            </li>
-          </ul>
-
           <div class="left-bar-img-box">
+            <base-graphics-model/>
             <ul>
               <li>
-                <img class="left-bar-img" @click="handleOption('zhuanshi')" src="@/assets/images/fsdfs(2).jpg"
-                     alt="图片" widget-type="zhuanshi" draggable="true">
+               <diamond-model/>
               </li>
               <li>
-                <img class="left-bar-img" @click="handleOption('jingzi')" src="@/assets/images/50200009239445156201173242922_s.jpg"
-                     alt="图片" widget-type="jingzi" draggable="true">
+                <mirror-model/>
               </li>
               <li>
-                <img class="left-bar-img" @click="handleOption('zhuozi')" src="@/assets/images/l92748-cinema4d-table-66762.jpg"
-                     alt="图片" widget-type="zhuozi" draggable="true">
+                <table-model/>
               </li>
               <li>
-                <img class="left-bar-img" @click="handleOption('yizi')" src="@/assets/images/5d859e93020d448db0bcc4a98857ab46.jpg"
-                     alt="图片" widget-type="yizi" draggable="true">
+               <chair-model/>
               </li>
               <li>
-                <img class="left-bar-img" @click="handleOption('computer')" src="@/assets/images/7394f63115744d8888a5fea9a631a4d5.jpg"
-                     alt="图片" widget-type="computer" draggable="true">
+               <old-computer-model/>
               </li>
             </ul>
           </div>
@@ -50,12 +31,19 @@
         <el-collapse-item title="仓库" name="3">
           <ul>
             <li>
-              <img class="left-bar-img" @click="handleOption('firstgun')" src="@/assets/images/l76324-sniper-rifle-ksr-29-new-34178.png"
-                   alt="图片" widget-type="firstgun" draggable="true">
+              <gun-ksr-model/>
+            </li>
+            <li>
+              <hand-gun-model/>
             </li>
           </ul>
         </el-collapse-item>
         <el-collapse-item title="厂房" name="4">
+          <ul>
+            <li>
+             <iron-man-model/>
+            </li>
+          </ul>
         </el-collapse-item>
       </el-collapse>
     </div>
@@ -64,6 +52,15 @@
 
 <script>
     import utils from '../../utils/utils'
+    import HandGunModel from "../models/HandGunModel";
+    import GunKsrModel from "../models/GunKsrModel";
+    import OldComputerModel from "../models/OldComputerModel";
+    import ChairModel from "../models/ChairModel";
+    import TableModel from "../models/TableModel";
+    import MirrorModel from "../models/MirrorModel";
+    import DiamondModel from "../models/DiamondModel";
+    import BaseGraphicsModel from "../models/BaseGraphicsModel";
+    import IronManModel from "../models/IronManModel";
     export default {
         name: "LeftBarView",
         data(){
@@ -71,18 +68,17 @@
                 activeNames: ['1']
             }
         },
+        components:{
+            IronManModel,
+            BaseGraphicsModel,
+            DiamondModel, MirrorModel, TableModel, ChairModel, HandGunModel ,GunKsrModel, OldComputerModel},
         methods:{
             addCompoment(type){
                 this.$emit('addCompoment',type)
             },
 
             handleChange(val) {
-                console.log(val);
-            },
-            handleOption(name){
-                this.$emit('optionChange',{
-                    name : name,
-                });
+                // console.log(val);
             },
         },
         mounted() {
@@ -93,7 +89,7 @@
 
 <style scoped>
   .left-bar-component{
-    opacity: 0.6;
+    opacity: 0.8;
   }
 
   .left-bar-main{
@@ -102,10 +98,7 @@
   }
   .left-bar-img-box{
     display: flex;
-  }
-  .left-bar-img{
-    width: 50px;
-    height: 50px;
+    flex-direction: column;
   }
 
   * {
@@ -116,10 +109,6 @@
     list-style: none;
   }
 
-
-.left-bar-img{
-  cursor: pointer;
-}
 
   ul,
   li{

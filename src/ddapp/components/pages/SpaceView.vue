@@ -26,15 +26,18 @@
 <script>
     import * as THREE from "three"
     import { requestFullScreen ,exitFullscreen } from '../../utils/FullScreen.js'
-    import { OBJLoader, MTLLoader } from 'three-obj-mtl-loader';
+    // import { OBJLoader, MTLLoader } from 'three-obj-mtl-loader';
 
     import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
     import { TransformControls } from "three/examples/jsm/controls/TransformControls"
     import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
     import { DragControls } from "three/examples/jsm/controls/DragControls"
 
+
+    import { MTLLoader } from  'three/examples/jsm/loaders/MTLLoader.js'
+    import { OBJLoader } from  'three/examples/jsm/loaders/OBJLoader.js'
     import { DDSLoader } from 'three/examples/jsm/loaders/DDSLoader.js';
-    import {OBJLoader2} from "three/examples/jsm/loaders/OBJLoader2";
+    import { OBJLoader2 } from "three/examples/jsm/loaders/OBJLoader2";
 
     import { MtlObjBridge } from "three/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js";
 
@@ -70,6 +73,8 @@
                 originalWidth: '',
                 originalHeight: '',
 
+                sceneBg: require('@/assets/bgimg/cbbfeec3a27a7eee9a7b442a1b39686f.jpg'),
+
             }
         },
         created() {
@@ -82,6 +87,29 @@
             initScene() {
                 this.scene = new THREE.Scene();
                 this.scene.background = new THREE.Color(0x050505);
+
+                // 在场景中添加雾的效果；样式上使用和背景一样的颜色
+                // this.scene.fog = new THREE.Fog(0xf7d9aa, 100, 800);
+
+                //给场景添加天空盒子纹理
+                // var cubeTextureLoader = new THREE.CubeTextureLoader();
+                // cubeTextureLoader.setPath( 'images/' );
+                // //六张图片分别是朝前的（posz）、朝后的（negz）、朝上的（posy）、朝下的（negy）、朝右的（posx）和朝左的（negx）。
+                // var cubeTexture = cubeTextureLoader.load( [
+                //     'right.js', 'left.jpg',
+                //     'top.jpg', 'bottom.jpg',
+                //     'frent.jpg', 'back.jpg'
+                // ] );
+                //
+                // this.scene.background = cubeTexture;
+
+                //给场景添加天空盒子背景
+                const loader = new THREE.TextureLoader();
+                const bgTexture = loader.load(this.sceneBg);
+
+                this.scene.background = bgTexture;
+
+
 
                 this.group = new THREE.Group();
                 this.scene.add(this.group);
@@ -111,7 +139,14 @@
             /** 渲染器**/
             initRenderer() {
 
-                this.renderer = new THREE.WebGLRenderer({antialias: true});
+                // 创建渲染器
+                this.renderer = new THREE.WebGLRenderer({
+                    // 在 css 中设置背景色透明显示渐变色
+                    alpha: true,
+                    // 开启抗锯齿，但这样会降低性能。
+                    // 不过，由于我们的项目基于低多边形的，那还好 :)
+                    antialias: true
+                });
                 //设置渲染区域尺寸
                 this.renderer.setSize(window.innerWidth, window.innerHeight);
                 this.renderer.setClearColor(0x050505);
@@ -124,21 +159,49 @@
 
             /** 初始化灯光**/
             initLight() {
-                // this.scene.add(new THREE.AmbientLight(0xcccccc, 0.4));//环境光
-                // this.light = new THREE.DirectionalLight(0xffffff, 0.4);//从正上方（不是位置）照射过来的平行光，0.45的强度
-                // this.light.position.set(100, 100, 500);
-                // this.light.position.multiplyScalar(0.3);
-                // this.scene.add(this.light);
-
-                // const pointLight = new THREE.PointLight(0xffffff, 0.8); //创建一个点灯光
+                // const pointLight = new THREE.PointLight(0xffffff, 0.4); //创建一个点灯光
                 // this.camera.add(pointLight);
+                //
+                // this.light = new THREE.SpotLight(0xffffff,0.4);
+                // this.light.position.set(-300, 600, -400);
+                // this.light.castShadow = true;
+                //
+                // this.scene.add(this.light);
+                // this.scene.add(new THREE.AmbientLight(0xcccccc, 0.4));
 
-                this.light = new THREE.SpotLight(0xffffff);
-                this.light.position.set(-300, 600, -400);
-                this.light.castShadow = true;
 
-                this.scene.add(this.light);
-                this.scene.add(new THREE.AmbientLight(0xcccccc, 0.4));
+
+                // 半球光就是渐变的光；
+                // 第一个参数是天空的颜色，第二个参数是地上的颜色，第三个参数是光源的强度
+                var hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, .9);
+
+                // 方向光是从一个特定的方向的照射
+                // 类似太阳，即所有光源是平行的
+                // 第一个参数是关系颜色，第二个参数是光源强度
+               var shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+
+                // 设置光源的方向。
+                // 位置不同，方向光作用于物体的面也不同，看到的颜色也不同
+                shadowLight.position.set(150, 350, 350);
+
+                // 开启光源投影
+                shadowLight.castShadow = true;
+
+                // 定义可见域的投射阴影
+                shadowLight.shadow.camera.left = -400;
+                shadowLight.shadow.camera.right = 400;
+                shadowLight.shadow.camera.top = 400;
+                shadowLight.shadow.camera.bottom = -400;
+                shadowLight.shadow.camera.near = 1;
+                shadowLight.shadow.camera.far = 1000;
+
+                // 定义阴影的分辨率；虽然分辨率越高越好，但是需要付出更加昂贵的代价维持高性能的表现。
+                shadowLight.shadow.mapSize.width = 2048;
+                shadowLight.shadow.mapSize.height = 2048;
+
+                // 为了使这些光源呈现效果，只需要将它们添加到场景中
+                this.scene.add(hemisphereLight);
+                this.scene.add(shadowLight);
             },
 
 
@@ -318,6 +381,8 @@
                     opacity: 0.8
                 });
                 object.material = material;
+
+
             },
 
             /** 提供信息展示位**/
@@ -355,7 +420,7 @@
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
                     let selectObj = intersects[0].object;
 
-                    this.changeMaterial(selectObj)
+                    // this.changeMaterial(selectObj)
                     this.renderDiv(selectObj)
                 }else{
                     this.renderDiv()
@@ -367,8 +432,6 @@
 
                 // 获取 raycaster 和所有模型相交的数组，其中的元素按照距离排序，越近的越靠前
                 var intersects = this.getIntersects(event);
-
-                console.log(intersects);
 
                 // 获取选中最近的 Mesh 对象
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
@@ -405,48 +468,87 @@
             /** 导入外部资源**/
             loadModel(name,optionsValue, modelUrl, mtlUrl){
 
-                const mtlLoader = new MTLLoader();
-                const objLoader = new OBJLoader2();
+                // const mtlLoader = new MTLLoader(); // mtl材加载器
+                // const objLoader = new OBJLoader2(); //obj模型加载器
+                // // const objLoader = new OBJLoader(); //obj模型加载器
+                //
+                // var onError = function (xhr) { console.log("An error happened"); };
+                // var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
+                //
+                // var manager = new THREE.LoadingManager();
+                // manager.addHandler( /\.dds$/i, new DDSLoader() );
+                //
+                // mtlLoader.load(mtlUrl, (mtlParseResult) => {
+                //     // const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+                //
+                //     objLoader.addMaterials(mtlParseResult);
+                //     // objLoader.addMaterial(materials);
+                //     // objLoader.setMaterials(mtlParseResult);
+                //     // objLoader.setMaterial(mtlParseResult);
+                //     objLoader.load(modelUrl, (object) => {
+                //
+                //         object.children.forEach(function(child) {
+                //             child.material.color = new THREE.Color( 0x666666 );
+                //             child.material.shininess = 4;
+                //             child.material.shading = THREE.SmoothShading;
+                //             child.material.alphaTest  = 0.1;
+                //             child.material.transparent  = true;
+                //         });
+                //
+                //         object.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
+                //         object.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                //
+                //         object.name = name; //添加名称
+                //
+                //         this.addToObjects(object)
+                //
+                //     },onProgress, onError);
+                //
+                // });
+
+
+                let objLoader2 = new OBJLoader2()
+                let mtlLoader = new MTLLoader()
+                let _this = this
 
                 var onError = function (xhr) { console.log("An error happened"); };
                 var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
 
-                var manager = new THREE.LoadingManager();
-                manager.addHandler( /\.dds$/i, new DDSLoader() );
+                mtlLoader.load(mtlUrl, function (mtlParseResult) {
+                    objLoader2.setLogging(true, true)
+                    objLoader2.addMaterials(MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult))
+                    objLoader2.load(modelUrl, function (calldata) {
+                        _this.oldChildren = _this.dealMeshMaterial(calldata.children)
 
-                console.log(mtlUrl);
-                mtlLoader.load(mtlUrl, (mtlParseResult) => {
-                    const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
+                        calldata.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
+                        calldata.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
 
-                    //加载模型后，遍历所有材质，设置成双面。
-                    // for (const material of Object.values(materials)) {
-                    //     material.side = THREE.DoubleSide;
-                    // }
-                    objLoader.addMaterials(materials);
-                    objLoader.load(modelUrl, (object) => {
+                        calldata.name = name; //添加名称
 
-                        object.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
-                        object.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-
-                        object.name = name; //添加名称
-
-                        this.addToObjects(object)
-
-                    },onProgress, onError);
-
-                });
-
-
-
-
-
-
+                        // _this.scene.add(calldata)
+                        _this.addToObjects(calldata)
+                    }, onProgress, onError, null)
+                })
 
 
             },
 
+            /**
+             * 留住每个模型的 原材质
+             */
+            dealMeshMaterial (arrs) {
+                let result = []
+                for (let i = 0; i < arrs.length; i++) {
+                    let obj = {
+                        'name': arrs[i].name,
+                        'material': arrs[i].material
+                    }
+                    result.push(obj)
+                }
+                return result
+            },
 
-            loadchangfangti(width, height) {
+            loadchangfangti(options) {
 
                 //轮廓大小
                 var rollOverGeo = new THREE.BoxGeometry(2, 2, 5);
@@ -455,19 +557,20 @@
                 //加载 轮廓 材质
                 var rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
 
-                rollOverMesh.position.set(height / 10, 0, width / 10);//模型摆放的位置
-                rollOverMesh.scale.set(20, 20, 20);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                rollOverMesh.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
+                rollOverMesh.scale.set(options.x, options.y, options.z);  //模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
                 rollOverMesh.name = '长方体' // 使用name属性标记内部模型的名称
+
                 this.addToObjects(rollOverMesh)
             },
 
-            loadyuanzhu(width, height){
+            loadyuanzhu(options){
                 var geometry = new THREE.CylinderGeometry(20,20,100,40);
                 var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
 
                 var mesh = new THREE.Mesh( geometry, material );
-                mesh.position.set(height / 10, 0, width / 10);//模型摆放的位置
-                mesh.scale.set(1, 1, 1);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                mesh.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
+                mesh.scale.set(options.x, options.y, options.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
                 mesh.updateMatrix();
                 mesh.matrixAutoUpdate = true;
                 mesh.name = '圆柱体' // 使用name属性标记内部模型的名称
@@ -475,7 +578,7 @@
                 this.addToObjects(mesh)
             },
 
-            loadqiuti(width, height){
+            loadqiuti(options){
                 var radius = 50, segemnt = 16, rings = 16;
 
                 var sphereMaterial = new THREE.MeshPhongMaterial({ color: 0x7777ff });
@@ -484,67 +587,54 @@
                     new THREE.SphereGeometry(radius,segemnt,rings),
                     sphereMaterial
                 );
-                sphere.position.set(height / 10, 0, width / 10);//模型摆放的位置
-                sphere.scale.set(1, 1, 1);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-
+                sphere.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
+                sphere.scale.set(options.x, options.y, options.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
                 sphere.name = '球体' // 使用name属性标记内部模型的名称
                 sphere.castShadow = true;
+
                 this.addToObjects(sphere)
             },
 
             /** 拖放事件**/
             handleDrag(e) {
-                var dataValue = e.dataTransfer.getData('widget-type')
+                var dataValue = e.dataTransfer.getData('widget-type');
+                var materialUrl = e.dataTransfer.getData('material-url');
+                var modelUrl = e.dataTransfer.getData('model-url');
+                let optionValue = e.dataTransfer.getData('option-value');
+
                 let x = parseFloat(e.x.toFixed(2));
                 let y = parseFloat(e.y.toFixed(2));
 
+                var optiosData = optionValue.split('|');
+
                 let options = {
-                    clientX: x/10,
-                    clientY: y/10,
-                    x: 0.2,
-                    y: 0.2,
-                    z: 0.2,
+                    clientX: x/optiosData[0],
+                    clientY: y/optiosData[1],
+                    x: optiosData[2],
+                    y: optiosData[3],
+                    z: optiosData[4],
                 };
 
                 switch (dataValue) {
-                    case 'zhuanshi': //钻石
-                        this.loadModel( dataValue,options,'/models/diamond/diamond-brilliantcut.obj','');
-                        break;
                     case 'changfangti': //长方体
-                        this.loadchangfangti(x, y);
+                        options.x = 10;
+                        options.y = 10;
+                        options.z = 10;
+                        this.loadchangfangti(options);
                         break;
                     case 'yuanzhu': //圆柱体
-                        this.loadyuanzhu(x, y);
+                        options.x = 0.4;
+                        options.y = 0.4;
+                        options.z = 0.4;
+                        this.loadyuanzhu(options);
                         break;
                     case 'qiuti': //球体
-                        this.loadqiuti(x, y);
+                        options.x = 0.4;
+                        options.y = 0.4;
+                        options.z = 0.4;
+                        this.loadqiuti(options);
                         break;
-                    case 'jingzi': //镜子
-                        this.loadModel(dataValue,options,'/models/other/tabletop-mirror.obj','')
-                        break;
-                    case 'zhuozi': //桌子
-                        options.x =  1
-                        options.y =  1
-                        options.z =  1
-                        this.loadModel(dataValue,options,'/models/Tabel/table.obj','')
-                        break;
-                    case 'yizi': //椅子
-                        options.x =  0.2
-                        options.y =  0.2
-                        options.z =  0.2
-                        this.loadModel(dataValue,options,'/models/yizi/file.obj','')
-                        break;
-                    case 'firstgun': //枪
-                        options.x =  10
-                        options.y =  10
-                        options.z =  10
-                        this.loadModel( dataValue,options,'/models/obj/KSR-29 sniper rifle new_obj.obj','');
-                        break;
-                    case 'computer': //电脑
-                        options.x =  0.01
-                        options.y =  0.01
-                        options.z =  0.01
-                        this.loadModel( dataValue,options,'/models/computer/file.obj','');
+                    default: this.loadModel(dataValue,options,modelUrl,materialUrl);
                         break;
                 }
             },
