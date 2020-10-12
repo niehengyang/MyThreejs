@@ -13,7 +13,7 @@
                 pictureUrl: require("@/assets/images/01381e554bef42000001bf7293ecdc.jpg"),
 
                 //横坐标缩小倍数clientX|纵坐标缩小倍数clientY|整体大小比列(x,y,z)
-                optionsTypeValue: '10|10|1|1|1',
+                optionsTypeValue: '10|10|0.5|0.5|0.5',
                 modelUrl: '/models/robot/IronMan.obj',  //模型地址
                 materialUrl: '/models/robot/IronMan.mtl', //模型材质地址
                 name: 'ironMan', //模型名称

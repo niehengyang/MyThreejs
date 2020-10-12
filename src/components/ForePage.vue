@@ -7,7 +7,8 @@
 
 <script>
     import * as THREE from "three"
-    import { OBJLoader, MTLLoader } from 'three-obj-mtl-loader';
+    import { MTLLoader } from  'three/examples/jsm/loaders/MTLLoader.js'
+    import { OBJLoader } from  'three/examples/jsm/loaders/OBJLoader.js'
 
     const OrbitControls = require('three-orbit-controls')(THREE);
     export default {

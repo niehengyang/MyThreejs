@@ -46,7 +46,7 @@
     top: 20px;
     position: absolute;
     width: 240px;
-    height: 800px;
+    max-height: 800px;
   }
 
   .speace-view-item{

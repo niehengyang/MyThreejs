@@ -49,7 +49,7 @@ module.exports = {
             /** 拦截的url**/
             '/api': {
                 /** 转发到目标服务器的url**/
-                target: '/',
+                target: 'http://localhost:8088/',
                 /** 是否代理websockets,可选**/
                 ws: true,
                 secure: false,
@@ -57,7 +57,7 @@ module.exports = {
                 changeOrigin: true,
                 /** 修改请求路径**/
                 pathRewrite: {
-                    '^/api': '/'
+                    '^/api': '/v1'
                 }
             }
         }

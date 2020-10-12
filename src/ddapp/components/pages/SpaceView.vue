@@ -10,7 +10,7 @@
         <el-button @click="removeModel" :disabled="selectObject? false: true">移除模型</el-button>
 
         <el-button>预览</el-button>
-        <el-button>保存</el-button>
+        <el-button @click="saveModel">保存</el-button>
       </div>
 
       <!--      <div class="tabke-bar-box">-->
@@ -26,13 +26,10 @@
 <script>
     import * as THREE from "three"
     import { requestFullScreen ,exitFullscreen } from '../../utils/FullScreen.js'
-    // import { OBJLoader, MTLLoader } from 'three-obj-mtl-loader';
-
     import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
     import { TransformControls } from "three/examples/jsm/controls/TransformControls"
     import { TrackballControls } from "three/examples/jsm/controls/TrackballControls"
     import { DragControls } from "three/examples/jsm/controls/DragControls"
-
 
     import { MTLLoader } from  'three/examples/jsm/loaders/MTLLoader.js'
     import { OBJLoader } from  'three/examples/jsm/loaders/OBJLoader.js'
@@ -58,6 +55,11 @@
 
                 guiControls : '',
                 //container是指页面放置这个webGL的一个层
+
+
+                //拖动控件
+                transformControls: '',
+
                 container: '',
                 //objects是指场景中的实体集合
                 objects: [],
@@ -130,8 +132,8 @@
 
                 /***** 透视相机*****/
                 const aspect = window.innerWidth / window.innerHeight; //宽高可根据实际项目要求更改 如果是窗口高度改为innerHeight
-                this.camera = new THREE.PerspectiveCamera(45, aspect, 0.1, 10000);
-                this.camera.position.set(0, 300, 600);
+                this.camera = new THREE.PerspectiveCamera(450, aspect, 0.1, 10000);
+                this.camera.position.set(0, 500, 500);
                 this.camera.lookAt(new THREE.Vector3(0, 0, 0)); // 让相机指向原点
                 this.scene.add(this.camera);
 
@@ -214,9 +216,10 @@
                  * colorCenterLine  网格中心线颜色
                  * colorGrid    网格其他线颜色
                  */
-                var gridHelper = new THREE.GridHelper(1000, 50, 0xCD3700, 0x4A4A4A);
-                gridHelper.position.y = -200;
+                var gridHelper = new THREE.GridHelper(10000, 100, 0xCD3700, 0x4A4A4A);
+                gridHelper.position.y = -1000;
                 gridHelper.position.x = 0;
+
                 this.scene.add(gridHelper);
 
             },
@@ -278,15 +281,18 @@
                     this.controls.enabled = true;
                     this.selectObject = '';
                     transformControls.detach();
+                    this.transformControls = '';
+
                 });
 
                 // 指定某个对象绑定到transformControls上，比如点击物体时可将物体绑定
                 // const object: Object3D = ...
                 transformControls.attach(obj);
+                this.transformControls = transformControls;
 
-
-
-                // 初始化拖拽控件
+                // let that = this;
+                //
+                // // 初始化拖拽控件
                 // var dragControls = new DragControls(obj, this.camera, this.renderer.domElement);
                 //
                 // // 鼠标略过事件
@@ -297,11 +303,11 @@
                 // });
                 // // 开始拖拽
                 // dragControls.addEventListener('dragstart', function (event) {
-                //     this.controls.enabled = false;
+                //     that.controls.enabled = false;
                 // });
                 // // 拖拽结束
                 // dragControls.addEventListener('dragend', function (event) {
-                //     this.controls.enabled = true;
+                //     that.controls.enabled = true;
                 // });
 
             },
@@ -310,7 +316,7 @@
             /** 更新控件**/
             updateData() {
                 // this.stats.update();
-                this.controls.update();
+                // this.controls.update();
                 // this.controls.handleResize();  //控制器重置（球形控件有效）
             },
 
@@ -468,45 +474,6 @@
             /** 导入外部资源**/
             loadModel(name,optionsValue, modelUrl, mtlUrl){
 
-                // const mtlLoader = new MTLLoader(); // mtl材加载器
-                // const objLoader = new OBJLoader2(); //obj模型加载器
-                // // const objLoader = new OBJLoader(); //obj模型加载器
-                //
-                // var onError = function (xhr) { console.log("An error happened"); };
-                // var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
-                //
-                // var manager = new THREE.LoadingManager();
-                // manager.addHandler( /\.dds$/i, new DDSLoader() );
-                //
-                // mtlLoader.load(mtlUrl, (mtlParseResult) => {
-                //     // const materials =  MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult);
-                //
-                //     objLoader.addMaterials(mtlParseResult);
-                //     // objLoader.addMaterial(materials);
-                //     // objLoader.setMaterials(mtlParseResult);
-                //     // objLoader.setMaterial(mtlParseResult);
-                //     objLoader.load(modelUrl, (object) => {
-                //
-                //         object.children.forEach(function(child) {
-                //             child.material.color = new THREE.Color( 0x666666 );
-                //             child.material.shininess = 4;
-                //             child.material.shading = THREE.SmoothShading;
-                //             child.material.alphaTest  = 0.1;
-                //             child.material.transparent  = true;
-                //         });
-                //
-                //         object.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
-                //         object.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-                //
-                //         object.name = name; //添加名称
-                //
-                //         this.addToObjects(object)
-                //
-                //     },onProgress, onError);
-                //
-                // });
-
-
                 let objLoader2 = new OBJLoader2()
                 let mtlLoader = new MTLLoader()
                 let _this = this
@@ -520,17 +487,14 @@
                     objLoader2.load(modelUrl, function (calldata) {
                         _this.oldChildren = _this.dealMeshMaterial(calldata.children)
 
-                        calldata.position.set(optionsValue.clientX, 0, optionsValue.clientY);//模型摆放的位置
+                        calldata.position.set(optionsValue.clientX, -1,optionsValue.clientY );//模型摆放的位置
                         calldata.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
 
                         calldata.name = name; //添加名称
 
-                        // _this.scene.add(calldata)
                         _this.addToObjects(calldata)
                     }, onProgress, onError, null)
                 })
-
-
             },
 
             /**
@@ -602,14 +566,20 @@
                 var modelUrl = e.dataTransfer.getData('model-url');
                 let optionValue = e.dataTransfer.getData('option-value');
 
-                let x = parseFloat(e.x.toFixed(2));
-                let y = parseFloat(e.y.toFixed(2));
+                // e.preventDefault();
+                // let x = parseFloat(e.x.toFixed(2));
+                // let y = parseFloat(e.y.toFixed(2));
 
                 var optiosData = optionValue.split('|');
 
+                e.preventDefault();
+
+                var mouse3D = this.getMousePosition(e);
+                console.log(mouse3D.x + ' ' + mouse3D.y + ' ' + mouse3D.z);
+
                 let options = {
-                    clientX: x/optiosData[0],
-                    clientY: y/optiosData[1],
+                    clientX: mouse3D.x,
+                    clientY: mouse3D.y,
                     x: optiosData[2],
                     y: optiosData[3],
                     z: optiosData[4],
@@ -639,6 +609,29 @@
                 }
             },
 
+
+            /** 屏幕坐标转世界坐标**/
+            getMousePosition(event) {
+
+                var mouse2D = new THREE.Vector3();
+                var mouse3D = new THREE.Vector3();
+
+
+                mouse2D.x = (clientX/window.innerWidth) * 2 - 1;
+                mouse2D.y = -(clientY/window.innerHeight) * 2 + 1;
+                mouse2D.z = 0.5;
+
+
+                mouse2D.unproject( this.camera );
+                mouse2D.sub( this.camera.position ).normalize();
+                //新建一个三维单位向量 假设z方向就是0.5
+                var distance = -this.camera.position.z / mouse2D.z;
+                mouse3D.copy( this.camera.position ).add( mouse2D.multiplyScalar( distance ) );
+
+                return mouse3D;
+
+            },
+
             /** 添加模型**/
             addToObjects(mush){
 
@@ -658,17 +651,24 @@
 
             /** 移除模型**/
             removeModel(){
-                // const allChildren = this.scene.children
-                // console.log(allChildren);
+                let obj = '';
 
                 //按模型名称查找并移除
-                // const obj = this.scene.getObjectByName('zhuanshi')
-                // this.scene.remove(obj)
+                if (this.selectObject.parent.name){
+                    obj = this.scene.getObjectByName(this.selectObject.parent.name)
+                }else{
+                    obj = this.scene.getObjectByName(this.selectObject.name)
+                }
 
+                this.scene.remove(obj) //移除模型
+                this.transformControls.detach() //控制器清空
+                this.selectObject = ''; //清空选择模型
+                this.scene.children.pop(); //过滤遗留控制器
+            },
 
-                this.scene.remove(this.selectObject)
-                this.selectObject = '';
-                this.scene.children.pop()
+            //保存模型
+            saveModel(){
+
             },
 
             /** 全屏展示**/

@@ -17,7 +17,6 @@
     "three": "^0.120.1",
     "three-css2drender": "^1.0.0",
     "three-dragcontrols": "^0.88.2",
-    "three-obj-mtl-loader": "^1.0.3",
     "three-orbit-controls": "^82.1.0",
     "three-orbitcontrols": "^2.110.3",
     "three-transform-controls": "^1.0.4",
