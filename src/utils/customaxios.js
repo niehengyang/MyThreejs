@@ -70,7 +70,7 @@ const errorHandler = (status, msg) => {
 /** 请求拦截器**/
 service.interceptors.request.use(
     config => {
-        if (store.getters.token) { /** 判断token是否存在**/
+        if (1) { /** 判断token是否存在**/
             config.headers = {
                 'Authorization': TokenFactory.getToken(),
                 'X-Requested-With': 'XMLHttpRequest',

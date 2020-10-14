@@ -566,9 +566,9 @@
                 var modelUrl = e.dataTransfer.getData('model-url');
                 let optionValue = e.dataTransfer.getData('option-value');
 
-                // e.preventDefault();
-                // let x = parseFloat(e.x.toFixed(2));
-                // let y = parseFloat(e.y.toFixed(2));
+                e.preventDefault();
+                let x = parseFloat(e.x.toFixed(2));
+                let y = parseFloat(e.y.toFixed(2));
 
                 var optiosData = optionValue.split('|');
 
@@ -613,40 +613,48 @@
             /** 屏幕坐标转世界坐标**/
             getMousePosition(event) {
 
-                var mouse2D = new THREE.Vector3();
                 var mouse3D = new THREE.Vector3();
+                const mouseX = event.clientX;//鼠标单击坐标X
+                const mouseY = event.clientY;//鼠标单击坐标Y
 
+                // 屏幕坐标转标准设备坐标
+                const x = ( mouseX / window.innerWidth ) * 2 - 1;
+                const y = -( mouseY / window.innerHeight ) * 2 + 1;
+                //标准设备坐标(z=0.5这个值并没有一个具体的说法)
+                const stdVector = new THREE.Vector3(x, y, 0.5);
 
-                mouse2D.x = (clientX/window.innerWidth) * 2 - 1;
-                mouse2D.y = -(clientY/window.innerHeight) * 2 + 1;
-                mouse2D.z = 0.5;
+                // 通过unproject方法，可以将标准设备坐标转世界坐标
+                const worldVector = stdVector.unproject(this.camera);
+                // 进行剩下操作，比如判断鼠标是否选中某个物体
+                worldVector.sub( this.camera.position ).normalize();
+                var distance = -this.camera.position.z / worldVector.z;
+                mouse3D.copy( this.camera.position ).add( worldVector.multiplyScalar( distance ) );
 
-
-                mouse2D.unproject( this.camera );
-                mouse2D.sub( this.camera.position ).normalize();
-                //新建一个三维单位向量 假设z方向就是0.5
-                var distance = -this.camera.position.z / mouse2D.z;
-                mouse3D.copy( this.camera.position ).add( mouse2D.multiplyScalar( distance ) );
+                console.log(mouse3D);
 
                 return mouse3D;
-
             },
 
             /** 添加模型**/
             addToObjects(mush){
 
-                //添加控制
-                this.initDragControls(mush)
+                let params = {
+                    scene_id: 1,
+                    model_url: '',
+                    mtl_url: '',
+                    name: mush.name,
+                    structure_data: JSON.stringify(mush),
+                    desc: '',
+                }
 
-                // var group = new THREE.Group();
-                // group.add(mush);
+                this.$api.restfulApi.create('/createmodel',params).then((res)=>{
+                    //添加控制
+                    this.initDragControls(mush)
 
-                // var mesh = new THREE.Mesh();
-                // mesh.assign(mush);
-
-                //加入到场景
-                this.scene.add(mush);
-                this.objects.push(mush);
+                    //加入到场景
+                    this.scene.add(mush);
+                    this.objects.push(mush);
+                })
             },
 
             /** 移除模型**/
@@ -669,6 +677,13 @@
             //保存模型
             saveModel(){
 
+                let params = {
+                    structData: JSON.stringify(this.objects)
+                }
+
+                this.$api.restfulApi.create('/savemodel',params).then((res)=>{
+                    console.log(res);
+                })
             },
 
             /** 全屏展示**/
