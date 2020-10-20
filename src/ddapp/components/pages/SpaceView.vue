@@ -42,6 +42,7 @@
         name: "SpaceView",
         data(){
             return{
+                sceneId: 1,
                 /**场景 */
                 scene: '',
                 /**光线 */
@@ -64,6 +65,8 @@
                 //objects是指场景中的实体集合
                 objects: [],
 
+                objectArray: [],
+
                 group: '',
                 //projector是可能指屏幕和场景转换工具 renderer是指场景渲染，能把场景呈现到浏览器里
                 projector: '',
@@ -80,10 +83,34 @@
             }
         },
         created() {
-
+            // this.initData()
         },
 
         methods: {
+        /*****-------------------------------加载模型-------------------------------****/
+            initData(){
+
+            this.$api.restfulApi.list("/getscenemodels").then((res)=>{
+                console.log(res)
+                    res.data.forEach(value=>{
+                        value.structure_data = JSON.parse(value.structure_data)
+                        value.uuid = this.uuid();
+                        this.objectArray.push(value) //模型打包
+                        this.drawingModel(value);
+                    })
+            })
+            },
+
+            drawingModel(model){
+                if (model.model_type == '001'){
+                    this.loadBaseModel(model)
+                }
+                if (model.model_type == '002'){
+                    this.loadModel(model);
+                }
+
+            },
+
             /*****-------------------------------场景搭建-------------------------------****/
             /** 场景**/
             initScene() {
@@ -279,10 +306,11 @@
                 transformControls.addEventListener('mouseUp', (evt) => {
                     // 平移结束时启用相机控件
                     this.controls.enabled = true;
-                    this.selectObject = '';
+
                     transformControls.detach();
                     this.transformControls = '';
 
+                    this.packageModels(obj)
                 });
 
                 // 指定某个对象绑定到transformControls上，比如点击物体时可将物体绑定
@@ -312,6 +340,18 @@
 
             },
 
+
+            /** 打包模型**/
+            packageModels(Object3D){
+                // 先遍历list里面的每一个元素，对比item与每个元素的id是否相等，再利用splice的方法删除
+                for (var key in this.objectArray) {
+                    if (this.objectArray[key].uuid === Object3D.userData.uuid) {
+                        this.objectArray[key].structure_data.clientX = Object3D.position.x
+                        this.objectArray[key].structure_data.clientY = Object3D.position.y
+                        this.objectArray[key].structure_data.clientZ = Object3D.position.z
+                    }
+                }
+            },
 
             /** 更新控件**/
             updateData() {
@@ -352,8 +392,6 @@
             /** 获取与射线相交的对象数组**/
             getIntersects(event) {
                 event.preventDefault();
-                // console.log("event.clientX:" + event.clientX)
-                // console.log("event.clientY:" + event.clientY)
 
                 var mouse = new THREE.Vector2();
 
@@ -387,8 +425,6 @@
                     opacity: 0.8
                 });
                 object.material = material;
-
-
             },
 
             /** 提供信息展示位**/
@@ -400,13 +436,18 @@
 
                     // 逆转相机求出二维坐标
                     var vector = object.position.clone().project(this.camera);
+                    var x = Math.round(vector.x * halfWidth + halfWidth); //标准设备坐标转屏幕坐标
+                    var y = Math.round(-vector.y * halfHeight + halfHeight); //标准设备坐标转屏幕坐标
 
+                     //标签偏移量
+                    let offsetTop = 60;
                     // 修改 div 的位置
                     $("#label").css({
-                        left: vector.x * halfWidth + halfWidth,
-                        top: -vector.y * halfHeight + halfHeight - object.position.y,
+                        left: x + 'px',
+                        top: y - offsetTop + 'px',
                         opacity: 0.8
                     });
+
                     // 显示模型信息
                     $("#label").text("name:" + object.name);
                 }else{
@@ -424,11 +465,14 @@
                 var intersects = this.getIntersects(event);
                 // 获取选中最近的 Mesh 对象
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
-                    let selectObj = intersects[0].object;
-
-                    // this.changeMaterial(selectObj)
-                    this.renderDiv(selectObj)
+                    this.selectObject = intersects[0].object;
+                    // this.changeMaterial(selectObj) //改变材质颜色
+                    if ( this.selectObject.parent.type == 'Object3D'){
+                        this.selectObject = this.selectObject.parent;
+                    }
+                    this.renderDiv(this.selectObject)
                 }else{
+                    this.selectObject = '';
                     this.renderDiv()
                 }
             },
@@ -441,13 +485,12 @@
 
                 // 获取选中最近的 Mesh 对象
                 if (intersects.length != 0 && intersects[0].object instanceof THREE.Mesh) {
-                    this.selectObject = intersects[0].object;
-
-                    if ( this.selectObject.parent.type == 'Object3D'){
-                        this.initDragControls(this.selectObject.parent)
-                        return ;
+                    let selectObj = intersects[0].object;
+                    if ( selectObj.parent.type == 'Object3D'){
+                        this.initDragControls(selectObj.parent)
+                        return true;
                     }
-                    this.initDragControls(this.selectObject)
+                    this.initDragControls(selectObj)
                 } else {
                     alert("未选中 Mesh!");
                 }
@@ -472,7 +515,7 @@
 
             /*****-------------------------------加入模型-------------------------------****/
             /** 导入外部资源**/
-            loadModel(name,optionsValue, modelUrl, mtlUrl){
+            loadModel(modelData){
 
                 let objLoader2 = new OBJLoader2()
                 let mtlLoader = new MTLLoader()
@@ -481,16 +524,17 @@
                 var onError = function (xhr) { console.log("An error happened"); };
                 var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
 
-                mtlLoader.load(mtlUrl, function (mtlParseResult) {
+                mtlLoader.load(modelData.mtl_url, function (mtlParseResult) {
                     objLoader2.setLogging(true, true)
                     objLoader2.addMaterials(MtlObjBridge.addMaterialsFromMtlLoader(mtlParseResult))
-                    objLoader2.load(modelUrl, function (calldata) {
+                    objLoader2.load(modelData.model_url, function (calldata) {
                         _this.oldChildren = _this.dealMeshMaterial(calldata.children)
 
-                        calldata.position.set(optionsValue.clientX, -1,optionsValue.clientY );//模型摆放的位置
-                        calldata.scale.set(optionsValue.x, optionsValue.y, optionsValue.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                        calldata.position.set(modelData.structure_data.clientX, modelData.structure_data.clientY,modelData.structure_data.clientZ );//模型摆放的位置
+                        calldata.scale.set(modelData.structure_data.scaleX, modelData.structure_data.scaleY, modelData.structure_data.scaleZ);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
 
-                        calldata.name = name; //添加名称
+                        calldata.userData.uuid = modelData.uuid;
+                        calldata.name = modelData.name; //添加名称
 
                         _this.addToObjects(calldata)
                     }, onProgress, onError, null)
@@ -512,103 +556,72 @@
                 return result
             },
 
-            loadchangfangti(options) {
 
-                //轮廓大小
-                var rollOverGeo = new THREE.BoxGeometry(2, 2, 5);
-                //材质
-                var rollOverMaterial = new THREE.MeshBasicMaterial({color: 0xFFFF00, opacity: 1, transparent: true});
-                //加载 轮廓 材质
-                var rollOverMesh = new THREE.Mesh(rollOverGeo, rollOverMaterial);
+            /** 加载原生模型**/
+            loadBaseModel(modelData){
 
-                rollOverMesh.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
-                rollOverMesh.scale.set(options.x, options.y, options.z);  //模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-                rollOverMesh.name = '长方体' // 使用name属性标记内部模型的名称
-
-                this.addToObjects(rollOverMesh)
-            },
-
-            loadyuanzhu(options){
-                var geometry = new THREE.CylinderGeometry(20,20,100,40);
-                var material = new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } );
+                var geometry = {};
+                switch (modelData.model_classification) {
+                    case 'cuboid': //长方体
+                        //轮廓大小
+                        geometry = new THREE.BoxGeometry(2, 2, 5);
+                        break;
+                    case 'cylinder': //圆柱体
+                        geometry = new THREE.CylinderGeometry(20,20,100,40);
+                        break;
+                    case 'sphere': //球体
+                        geometry = new THREE.SphereGeometry(50,16,16);
+                        break;
+                    default:
+                        break;
+                }
+                var material = new THREE.MeshPhongMaterial( { color: modelData.epidermis_color, flatShading: true } );
 
                 var mesh = new THREE.Mesh( geometry, material );
-                mesh.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
-                mesh.scale.set(options.x, options.y, options.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                mesh.position.set(modelData.structure_data.clientX, modelData.structure_data.clientY,modelData.structure_data.clientZ );//模型摆放的位置
+                mesh.scale.set(modelData.structure_data.scaleX, modelData.structure_data.scaleY, modelData.structure_data.scaleZ);  //模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
+                mesh.name = modelData.name // 使用name属性标记内部模型的名称
+                mesh.userData.uuid = modelData.uuid;
                 mesh.updateMatrix();
                 mesh.matrixAutoUpdate = true;
-                mesh.name = '圆柱体' // 使用name属性标记内部模型的名称
 
                 this.addToObjects(mesh)
             },
 
-            loadqiuti(options){
-                var radius = 50, segemnt = 16, rings = 16;
-
-                var sphereMaterial = new THREE.MeshPhongMaterial({ color: 0x7777ff });
-
-                var sphere = new THREE.Mesh(
-                    new THREE.SphereGeometry(radius,segemnt,rings),
-                    sphereMaterial
-                );
-                sphere.position.set(options.clientX, 0, options.clientY);//模型摆放的位置
-                sphere.scale.set(options.x, options.y, options.z);//模型放大或缩小，有的时候看不到模型，考虑是不是模型太小或太大。
-                sphere.name = '球体' // 使用name属性标记内部模型的名称
-                sphere.castShadow = true;
-
-                this.addToObjects(sphere)
-            },
-
             /** 拖放事件**/
             handleDrag(e) {
-                var dataValue = e.dataTransfer.getData('widget-type');
-                var materialUrl = e.dataTransfer.getData('material-url');
-                var modelUrl = e.dataTransfer.getData('model-url');
-                let optionValue = e.dataTransfer.getData('option-value');
-
-                e.preventDefault();
-                let x = parseFloat(e.x.toFixed(2));
-                let y = parseFloat(e.y.toFixed(2));
-
-                var optiosData = optionValue.split('|');
+                var modelId = e.dataTransfer.getData('model_id');
 
                 e.preventDefault();
 
                 var mouse3D = this.getMousePosition(e);
-                console.log(mouse3D.x + ' ' + mouse3D.y + ' ' + mouse3D.z);
 
-                let options = {
-                    clientX: mouse3D.x,
-                    clientY: mouse3D.y,
-                    x: optiosData[2],
-                    y: optiosData[3],
-                    z: optiosData[4],
-                };
+                this.$api.restfulApi.item('/getmodelitem',modelId).then((res)=>{
+                    res.data.structure_data = JSON.parse(res.data.structure_data)
+                    res.data.structure_data.clientX = mouse3D.x
+                    res.data.structure_data.clientY = 0
+                    res.data.structure_data.clientZ = mouse3D.y
 
-                switch (dataValue) {
-                    case 'changfangti': //长方体
-                        options.x = 10;
-                        options.y = 10;
-                        options.z = 10;
-                        this.loadchangfangti(options);
-                        break;
-                    case 'yuanzhu': //圆柱体
-                        options.x = 0.4;
-                        options.y = 0.4;
-                        options.z = 0.4;
-                        this.loadyuanzhu(options);
-                        break;
-                    case 'qiuti': //球体
-                        options.x = 0.4;
-                        options.y = 0.4;
-                        options.z = 0.4;
-                        this.loadqiuti(options);
-                        break;
-                    default: this.loadModel(dataValue,options,modelUrl,materialUrl);
-                        break;
-                }
+                    res.data.uuid = this.uuid();
+
+                    this.objectArray.push(res.data) //模型打包
+
+                    this.drawingModel(res.data)
+                })
             },
 
+            /*** 生成唯一标识*/
+            uuid() {
+
+                var temp_url = URL.createObjectURL(new Blob());
+
+                var uuid = temp_url.toString(); // blob:https://xxx.com/b250d159-e1b6-4a87-9002-885d90033be3
+
+                URL.revokeObjectURL(temp_url);
+
+                return uuid.substr(uuid.lastIndexOf("/") + 1);
+
+            },
 
             /** 屏幕坐标转世界坐标**/
             getMousePosition(event) {
@@ -630,59 +643,55 @@
                 var distance = -this.camera.position.z / worldVector.z;
                 mouse3D.copy( this.camera.position ).add( worldVector.multiplyScalar( distance ) );
 
-                console.log(mouse3D);
-
                 return mouse3D;
             },
+
 
             /** 添加模型**/
             addToObjects(mush){
 
-                let params = {
-                    scene_id: 1,
-                    model_url: '',
-                    mtl_url: '',
-                    name: mush.name,
-                    structure_data: JSON.stringify(mush),
-                    desc: '',
-                }
+              //添加控制
+              // this.initDragControls(mush)
 
-                this.$api.restfulApi.create('/createmodel',params).then((res)=>{
-                    //添加控制
-                    this.initDragControls(mush)
-
-                    //加入到场景
-                    this.scene.add(mush);
-                    this.objects.push(mush);
-                })
+              //加入到场景
+              this.scene.add(mush);
+              this.objects.push(mush);
             },
 
-            /** 移除模型**/
+            /** 移出场景**/
             removeModel(){
-                let obj = '';
+                this.scene.remove(this.selectObject) //移除场景中的 模型
 
-                //按模型名称查找并移除
-                if (this.selectObject.parent.name){
-                    obj = this.scene.getObjectByName(this.selectObject.parent.name)
-                }else{
-                    obj = this.scene.getObjectByName(this.selectObject.name)
-                }
+                this.deleteItem(this.selectObject) //移除打包中的模型
 
-                this.scene.remove(obj) //移除模型
-                this.transformControls.detach() //控制器清空
                 this.selectObject = ''; //清空选择模型
-                this.scene.children.pop(); //过滤遗留控制器
+            },
+
+            /** 移出打包**/
+          deleteItem (item) {
+                var modelUuid = item.userData.uuid;
+                // 先遍历list里面的每一个元素，对比item与每个元素的id是否相等，再利用splice的方法删除
+                for (var key in this.objectArray) {
+                    if (this.objectArray[key].uuid === modelUuid) {
+                        this.objectArray.splice(key, 1)
+                    }
+                }
             },
 
             //保存模型
             saveModel(){
+                let paramsData = JSON.parse(JSON.stringify(this.objectArray))
+                paramsData.forEach(value => {
+                    value.structure_data = JSON.stringify(value.structure_data)
+                    value.scene_id = this.sceneId
+                })
 
-                let params = {
-                    structData: JSON.stringify(this.objects)
-                }
-
-                this.$api.restfulApi.create('/savemodel',params).then((res)=>{
-                    console.log(res);
+                this.$api.restfulApi.edit('/savemodels',this.sceneId,paramsData).then((res)=>{
+                    console.log(res.data)
+                    this.$message({
+                        message: res.msg,
+                        type: 'success'
+                    });
                 })
             },
 
@@ -702,12 +711,14 @@
                     requestFullScreen(dom);
                     this.isFullScreen = true;
                 }
-            }
+            },
         },
 
         mounted() {
             this.init()
             this.animate()
+
+            this.initData()
         }
     }
 </script>

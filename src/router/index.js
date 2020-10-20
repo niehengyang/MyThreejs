@@ -36,6 +36,11 @@ export const constantRoutes = [
         path: '/',
         name: 'ddapp',
         component: ()=> import('../ddapp/DDApp')
+    },
+    {
+        path: '/factory',
+        name: 'factory',
+        component: ()=>import('../ddapp/components/factory/model/Index')
     }
 
 ];

@@ -3,18 +3,11 @@ export default {
     addCompoment(){
         document.addEventListener("dragstart", function( event ) {
             let target = event.target;
-            let widgetType = target.getAttribute("widget-type");
-            let materialUrl = target.getAttribute("material-url");
-            let modelUrl = target.getAttribute("model-url");
-            let optionValue = target.getAttribute("option-value");
+            let modelId = target.getAttribute("model_id");
 
-            if(!widgetType) return;
+            if(!modelId) return;
 
-            console.log(widgetType);
-            event.dataTransfer.setData("widget-type",widgetType);
-            event.dataTransfer.setData("material-url",materialUrl);
-            event.dataTransfer.setData("model-url",modelUrl);
-            event.dataTransfer.setData("option-value",optionValue);
+            event.dataTransfer.setData("model_id",modelId);
 
         }, false);
 
