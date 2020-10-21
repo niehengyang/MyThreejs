@@ -1,30 +1,43 @@
 <template>
   <div class="speace-view-box" id="speace-view-box">
-    <div id="myCanvasContainer" @drop="handleDrag($event)"></div>
+    <div id="myCanvasContainer" @drop="handleDrag($event)" v-loading="pageLoading"></div>
     <div id="label"></div>
     <div>
       <div class="tool-bar-box">
         <div id="WebGL-output"></div>
         <div id="Stats-output"></div>
-        <el-button>上传模型</el-button>
+        <el-button @click="handleUploadModel">上传模型</el-button>
         <el-button @click="removeModel" :disabled="selectObject? false: true">移除模型</el-button>
 
         <el-button>预览</el-button>
         <el-button @click="saveModel">保存</el-button>
       </div>
 
-      <!--      <div class="tabke-bar-box">-->
-      <!--        <el-button type="text" @click="handleFullScreen()">-->
-      <!--          <img src="@/assets/images/toNormalScreen.png" v-if="isFullScreen">-->
-      <!--          <img src="@/assets/images/toFullscreen.png" v-else>-->
-      <!--        </el-button>-->
-      <!--      </div>-->
+      <div class="tabke-bar-box">
+        <el-button type="text" @click="handleFullScreen()">
+          <img src="@/assets/images/toNormalScreen.png" v-if="isFullScreen">
+          <img src="@/assets/images/toFullscreen.png" v-else>
+        </el-button>
+      </div>
+    </div>
+
+    <div class="dialog-box">
+      <el-dialog
+              title="上传模型"
+              :visible.sync="uploadDialogVisible"
+              width="40%"
+              destroy-on-close
+              :modal-append-to-body="false"
+              :before-close="handleFormClose">
+        <upload-component v-on:closeAdd="handleCloseAdd" v-on:submitCreate="submitCreate"></upload-component>
+      </el-dialog>
     </div>
   </div>
 </template>
 
 <script>
     import * as THREE from "three"
+    import Upload3DComponent from "./components/Upload3DModel.vue";
     import { requestFullScreen ,exitFullscreen } from '../../utils/FullScreen.js'
     import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
     import { TransformControls } from "three/examples/jsm/controls/TransformControls"
@@ -37,12 +50,17 @@
     import { OBJLoader2 } from "three/examples/jsm/loaders/OBJLoader2";
 
     import { MtlObjBridge } from "three/examples/jsm/loaders/obj2/bridge/MtlObjBridge.js";
+    import CreateComponent from "../factory/model/Create";
+    import EditComponent from "../factory/model/Edit";
 
     export default {
         name: "SpaceView",
         data(){
             return{
                 sceneId: 1,
+              uploadDialogVisible:false,
+                pageLoading: false,
+
                 /**场景 */
                 scene: '',
                 /**光线 */
@@ -82,23 +100,27 @@
 
             }
         },
+      components: {
+        "upload-component": Upload3DComponent,
+      },
         created() {
             // this.initData()
         },
 
         methods: {
-        /*****-------------------------------加载模型-------------------------------****/
+            /*****-------------------------------加载模型-------------------------------****/
             initData(){
 
-            this.$api.restfulApi.list("/getscenemodels").then((res)=>{
-                console.log(res)
+                this.pageLoading = true;
+                this.$api.restfulApi.list("/getscenemodels").then((res)=>{
                     res.data.forEach(value=>{
                         value.structure_data = JSON.parse(value.structure_data)
                         value.uuid = this.uuid();
                         this.objectArray.push(value) //模型打包
                         this.drawingModel(value);
                     })
-            })
+                    this.pageLoading = false;
+                })
             },
 
             drawingModel(model){
@@ -118,53 +140,51 @@
                 this.scene.background = new THREE.Color(0x050505);
 
                 // 在场景中添加雾的效果；样式上使用和背景一样的颜色
-                // this.scene.fog = new THREE.Fog(0xf7d9aa, 100, 800);
+                // this.scene.fog = new THREE.Fog(0xf7d9aa, 10, 500);
 
-                //给场景添加天空盒子纹理
-                // var cubeTextureLoader = new THREE.CubeTextureLoader();
-                // cubeTextureLoader.setPath( 'images/' );
-                // //六张图片分别是朝前的（posz）、朝后的（negz）、朝上的（posy）、朝下的（negy）、朝右的（posx）和朝左的（negx）。
-                // var cubeTexture = cubeTextureLoader.load( [
-                //     'right.js', 'left.jpg',
-                //     'top.jpg', 'bottom.jpg',
-                //     'frent.jpg', 'back.jpg'
-                // ] );
-                //
-                // this.scene.background = cubeTexture;
-
-                //给场景添加天空盒子背景
+              /***************** 给场景添加天空盒子纹理************************/
+              // var path = "airBox/";//设置路径
+              // var directions  = ["9d7c31fee5f045be87b44bd250f87946", "9d7c31fee5f045be87b44bd250f87946", "5957325589415",
+              //   "YBYCij74sHmE4dCCR8KzY8H4Yss6Y8Jz", "9d7c31fee5f045be87b44bd250f87946", "9d7c31fee5f045be87b44bd250f87946"];//获取对象
+              // var format = ".jpg";//格式
+              // //创建盒子，并设置盒子的大小为( 5000, 5000, 5000 )
+              // var skyGeometry = new THREE.BoxGeometry( 10000, 10000, 10000 );
+              // //设置盒子材质
+              // var materialArray = [];
+              // for (var i = 0; i < 6; i++)
+              //   materialArray.push( new THREE.MeshBasicMaterial({
+              //     map: THREE.ImageUtils.loadTexture( path + directions[i] + format ),//将图片纹理贴上
+              //     side: THREE.BackSide/*镜像翻转，如果设置镜像翻转，那么只会看到黑漆漆的一片，因为你身处在盒子的内部，所以一定要设置镜像翻转。*/
+              //   }));
+              // var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
+              // var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );//创建一个完整的天空盒，填入几何模型和材质的参数
+              // this.scene.add( skyBox );//在场景中加入天空盒
+              //
+              //   /***************** 给场景世界添加背景************************/
                 const loader = new THREE.TextureLoader();
                 const bgTexture = loader.load(this.sceneBg);
-
                 this.scene.background = bgTexture;
 
-
-
-                this.group = new THREE.Group();
-                this.scene.add(this.group);
             },
 
             /** 相机**/
             initCamera() {
                 /***** 正交相机*****/
-                // var width = window.innerWidth; //浏览器窗口宽度
-                // var height = window.innerHeight; //浏览器窗口高度
-                //   // 相机参数设置
-                // var k = width / height;
-                // var s = 150;
-                // //正投影相机设置
-                // this.camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 5000);
-                // this.camera.position.set(0, 300, 600);
-                // this.camera.lookAt(new THREE.Vector3(0, 0, 0)); // 让相机指向原点
+                // this.camera = new THREE.OrthographicCamera(window.innerWidth/-14.5,window.innerWidth/14.5,
+                //     window.innerHeight/14.5,window.innerHeight/-14.5,-10,5000);
+                // this.camera.position.set(200,500,-100);//设置相机坐标
+                // this.camera.lookAt(new THREE.Vector3(0, 0, 0));//让相机指向场景中心
+                // this.scene.add(this.camera);
 
                 /***** 透视相机*****/
                 const aspect = window.innerWidth / window.innerHeight; //宽高可根据实际项目要求更改 如果是窗口高度改为innerHeight
-                this.camera = new THREE.PerspectiveCamera(450, aspect, 0.1, 10000);
-                this.camera.position.set(0, 500, 500);
+                this.camera = new THREE.PerspectiveCamera(80, aspect, 0.1, 10000);
+                this.camera.position.set(0,300, 600);
                 this.camera.lookAt(new THREE.Vector3(0, 0, 0)); // 让相机指向原点
                 this.scene.add(this.camera);
 
             },
+
             /** 渲染器**/
             initRenderer() {
 
@@ -207,7 +227,7 @@
                 // 方向光是从一个特定的方向的照射
                 // 类似太阳，即所有光源是平行的
                 // 第一个参数是关系颜色，第二个参数是光源强度
-               var shadowLight = new THREE.DirectionalLight(0xffffff, .9);
+                var shadowLight = new THREE.DirectionalLight(0xffffff, .9);
 
                 // 设置光源的方向。
                 // 位置不同，方向光作用于物体的面也不同，看到的颜色也不同
@@ -245,10 +265,27 @@
                  */
                 var gridHelper = new THREE.GridHelper(10000, 100, 0xCD3700, 0x4A4A4A);
                 gridHelper.position.y = -1000;
-                gridHelper.position.x = 0;
+                gridHelper.position.x = -1000;
+                gridHelper.position.z = -100;
 
                 this.scene.add(gridHelper);
 
+              /********************地板************************/
+              //   var loader=new THREE.TextureLoader();
+              //   var groundTexture = loader.load('airBox/mudiban018.jpg');
+              // groundTexture.wrapS=groundTexture.wrapT=THREE.RepeatWrapping;
+              // groundTexture.repeat.set(25,25);
+              // groundTexture.anisotropy = 16;
+              // var groundMaterial=new THREE.MeshLambertMaterial({map:groundTexture});
+              //
+              // var groundGeometry=new THREE.PlaneGeometry(5000,5000);
+              //
+              // var mesh=new THREE.Mesh( groundGeometry, groundMaterial);
+              // mesh.rotation.x=-Math.PI/2;
+              // mesh.position.y =-250;
+              // mesh.receiveShadow=true;
+
+              // this.scene.add(mesh);
             },
 
 
@@ -356,7 +393,7 @@
             /** 更新控件**/
             updateData() {
                 // this.stats.update();
-                // this.controls.update();
+                this.controls.update();
                 // this.controls.handleResize();  //控制器重置（球形控件有效）
             },
 
@@ -373,7 +410,6 @@
                 addEventListener('resize', this.onWindowResize, false);
                 addEventListener('dblclick', this.onMouseDblclick, false);
                 addEventListener('keydown', this.onKeyDown, false);
-
             },
 
             animate() {
@@ -420,7 +456,7 @@
             changeMaterial(object) {
 
                 var material = new THREE.MeshLambertMaterial({
-                    color: 0xffffff * Math.random(),
+                    // color: 0xffffff * Math.random(), //变换颜色
                     transparent: object.material.transparent ? false : true,
                     opacity: 0.8
                 });
@@ -439,7 +475,7 @@
                     var x = Math.round(vector.x * halfWidth + halfWidth); //标准设备坐标转屏幕坐标
                     var y = Math.round(-vector.y * halfHeight + halfHeight); //标准设备坐标转屏幕坐标
 
-                     //标签偏移量
+                    //标签偏移量
                     let offsetTop = 60;
                     // 修改 div 的位置
                     $("#label").css({
@@ -492,7 +528,7 @@
                     }
                     this.initDragControls(selectObj)
                 } else {
-                    alert("未选中 Mesh!");
+                    // alert("未选中 Mesh!");
                 }
             },
 
@@ -522,7 +558,8 @@
                 let _this = this
 
                 var onError = function (xhr) { console.log("An error happened"); };
-                var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded"); };
+                var onProgress = function(xhr){ console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+                    _this.modelLoading(xhr) };
 
                 mtlLoader.load(modelData.mtl_url, function (mtlParseResult) {
                     objLoader2.setLogging(true, true)
@@ -539,6 +576,21 @@
                         _this.addToObjects(calldata)
                     }, onProgress, onError, null)
                 })
+            },
+
+            /** 模型加载进度条**/
+            modelLoading(xhr){
+
+                if (xhr.loaded < xhr.total){
+                    $("#myCanvasContainer").css({
+                        cursor: "wait"
+                    });
+                }else{
+                    $("#myCanvasContainer").css({
+                        cursor: "unset"
+                    });
+                }
+
             },
 
             /**
@@ -599,8 +651,8 @@
                 this.$api.restfulApi.item('/getmodelitem',modelId).then((res)=>{
                     res.data.structure_data = JSON.parse(res.data.structure_data)
                     res.data.structure_data.clientX = mouse3D.x
-                    res.data.structure_data.clientY = 0
-                    res.data.structure_data.clientZ = mouse3D.y
+                    res.data.structure_data.clientY = mouse3D.y
+                    res.data.structure_data.clientZ = mouse3D.z
 
                     res.data.uuid = this.uuid();
 
@@ -625,7 +677,6 @@
 
             /** 屏幕坐标转世界坐标**/
             getMousePosition(event) {
-
                 var mouse3D = new THREE.Vector3();
                 const mouseX = event.clientX;//鼠标单击坐标X
                 const mouseY = event.clientY;//鼠标单击坐标Y
@@ -633,6 +684,7 @@
                 // 屏幕坐标转标准设备坐标
                 const x = ( mouseX / window.innerWidth ) * 2 - 1;
                 const y = -( mouseY / window.innerHeight ) * 2 + 1;
+
                 //标准设备坐标(z=0.5这个值并没有一个具体的说法)
                 const stdVector = new THREE.Vector3(x, y, 0.5);
 
@@ -650,12 +702,12 @@
             /** 添加模型**/
             addToObjects(mush){
 
-              //添加控制
-              // this.initDragControls(mush)
+                //添加控制
+                // this.initDragControls(mush)
 
-              //加入到场景
-              this.scene.add(mush);
-              this.objects.push(mush);
+                //加入到场景
+                this.scene.add(mush);
+                this.objects.push(mush);
             },
 
             /** 移出场景**/
@@ -668,7 +720,7 @@
             },
 
             /** 移出打包**/
-          deleteItem (item) {
+            deleteItem (item) {
                 var modelUuid = item.userData.uuid;
                 // 先遍历list里面的每一个元素，对比item与每个元素的id是否相等，再利用splice的方法删除
                 for (var key in this.objectArray) {
@@ -712,6 +764,27 @@
                     this.isFullScreen = true;
                 }
             },
+
+          /**** -----------------------添加----------------------****/
+          handleUploadModel(){
+            this.uploadDialogVisible = true
+          },
+
+          //关闭表单
+          handleFormClose(down){
+            down()
+          },
+
+          //关闭添加
+          handleCloseAdd() {
+            this.uploadDialogVisible = false;
+          },
+
+          //提交成功
+          submitCreate() {
+            this.uploadDialogVisible = false;
+          },
+
         },
 
         mounted() {

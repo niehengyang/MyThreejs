@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="tool-bar">
-      <el-button class="tool-button" @click="handleAdd">创建</el-button>
+      <el-button class="tool-button" @click="handleAdd" type="primary">创建</el-button>
     </div>
     <div class="table-box">
       <el-table
@@ -59,6 +59,7 @@
           <template slot-scope="scope">
             <!--            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>-->
             <el-button @click="handleEditClick(scope.row.ID)" type="text" size="small">编辑</el-button>
+            <el-button @click="handleDeleteClick(scope.row.ID)" type="text" size="small" style="color: #880000">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -182,6 +183,28 @@
                 this.editDialogVisible = false;
                 this.initData();
             },
+
+          /**** -----------------------删除----------------------****/
+          handleDeleteClick(id){
+
+            this.$confirm("确认删除？", "提示", {
+              confirmButtonText: "确定",
+              cancelButtonText: "取消",
+              type: "warning"
+            })
+            .then(() => {
+              this.$api.restfulApi.delete('/deletemodel',id).then(res =>{
+                this.$message.success({
+                  showClose: true,
+                  message: res.msg,
+                  duration: 2000
+                });
+              })
+            })
+            .catch(() => {
+              console.log("取消删除");
+            });
+          }
         }
     }
 </script>

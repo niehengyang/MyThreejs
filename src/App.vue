@@ -12,7 +12,7 @@ export default {
   }
 }
 </script>
-
+<style src="../src/assets/css/app.css"></style>
 <style>
 #app .app-router-view{
   position: absolute;
